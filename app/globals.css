@@ -1,0 +1,466 @@
+@font-face {
+  font-family: 'Andasia';
+  src: url('/andasia/Andasia Personal Use Only.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Catchy Mager';
+  src: url('/catchy-mager/Catchy Mager.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Alex Brush';
+  src: url('/alex-brush/AlexBrush-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Animaciones de dibujo progresivo para WeddingRingsSet1 */
+@keyframes drawRing1 {
+  0% { 
+    stroke-dashoffset: 200;
+  }
+  100% { 
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawRing2 {
+  0% { 
+    stroke-dashoffset: 150;
+  }
+  100% { 
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawRing3 {
+  0% { 
+    stroke-dashoffset: 180;
+  }
+  100% { 
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawOuterRings {
+  0% { 
+    stroke-dashoffset: 300;
+  }
+  100% { 
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawDecorations {
+  0% { 
+    stroke-dashoffset: 100;
+  }
+  100% { 
+    stroke-dashoffset: 0;
+  }
+}
+
+.wedding-ring-draw-1 {
+  stroke-dasharray: 200;
+  animation: drawRing1 3s ease-in-out infinite;
+}
+
+.wedding-ring-draw-2 {
+  stroke-dasharray: 150;
+  animation: drawRing2 3s ease-in-out infinite 0.5s;
+}
+
+.wedding-ring-draw-3 {
+  stroke-dasharray: 180;
+  animation: drawRing3 3s ease-in-out infinite 1s;
+}
+
+.wedding-ring-draw-outer {
+  stroke-dasharray: 300;
+  animation: drawOuterRings 4s ease-in-out infinite 1.5s;
+}
+
+.wedding-ring-draw-decorations {
+  stroke-dasharray: 100;
+  animation: drawDecorations 2s ease-in-out infinite 2s;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Catchy Mager', sans-serif;
+    background: linear-gradient(135deg, #FFF8F0 0%, #F7E7E7 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-wedding-gold hover:bg-wedding-burgundy text-white font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border-2 border-wedding-gold text-wedding-burgundy hover:bg-wedding-gold hover:text-white font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .card {
+    @apply bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-wedding-burgundy to-wedding-gold bg-clip-text text-transparent;
+  }
+  
+  .section-padding {
+    @apply py-16 px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+}
+
+/* Gallery 3D Spread Effect */
+.gallery-3d-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 4rem;
+  overflow: hidden;
+}
+
+.gallery-3d {
+  perspective: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .gallery-3d-container {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .gallery-3d {
+    gap: 0.5rem;
+    max-width: 100%;
+    padding: 0 1rem;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
+  
+  .gallery-item {
+    transform: rotateX(25deg) scale(0.6);
+    margin: 0.05em;
+    width: 150px;
+    height: 120px;
+  }
+  
+  .gallery-item:hover {
+    transform: translateZ(60px) rotateX(10deg) scale(0.75);
+  }
+  
+  /* Ajustar los planos para móvil - más compactos */
+  .gallery-plane.plane-2 {
+    left: 70%;
+  }
+  
+  .gallery-plane.plane-3 {
+    top: 70%;
+  }
+  
+  .gallery-plane.plane-4 {
+    left: -70%;
+  }
+  
+  .gallery-plane.plane-5 {
+    top: -70%;
+  }
+  
+  .gallery-plane.plane-6 {
+    top: 70%;
+    left: 70%;
+  }
+  
+  .gallery-plane.plane-7 {
+    top: 70%;
+    left: -70%;
+  }
+  
+  .gallery-plane.plane-8 {
+    top: -70%;
+    left: -70%;
+  }
+  
+  .gallery-plane.plane-9 {
+    top: -70%;
+    left: 70%;
+  }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .gallery-3d-container {
+    padding: 1rem 0.25rem;
+  }
+  
+  .gallery-3d {
+    gap: 0.25rem;
+    padding: 0 0.5rem;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
+  
+  .gallery-item {
+    transform: rotateX(20deg) scale(0.5);
+    margin: 0.02em;
+    width: 120px;
+    height: 90px;
+  }
+  
+  .gallery-item:hover {
+    transform: translateZ(40px) rotateX(5deg) scale(0.65);
+  }
+  
+  /* Planos aún más compactos para móviles pequeños */
+  .gallery-plane.plane-2 {
+    left: 60%;
+  }
+  
+  .gallery-plane.plane-3 {
+    top: 60%;
+  }
+  
+  .gallery-plane.plane-4 {
+    left: -60%;
+  }
+  
+  .gallery-plane.plane-5 {
+    top: -60%;
+  }
+  
+  .gallery-plane.plane-6 {
+    top: 60%;
+    left: 60%;
+  }
+  
+  .gallery-plane.plane-7 {
+    top: 60%;
+    left: -60%;
+  }
+  
+  .gallery-plane.plane-8 {
+    top: -60%;
+    left: -60%;
+  }
+  
+  .gallery-plane.plane-9 {
+    top: -60%;
+    left: 60%;
+  }
+}
+
+.gallery-item {
+  position: relative;
+  margin: 0.1em;
+  perspective-origin: center center;
+  transform-style: preserve-3d;
+  transform: rotateX(40deg);
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+.gallery-item:hover {
+  transform: translateZ(100px) rotateX(20deg);
+  z-index: 999;
+}
+
+.gallery-item:hover .gallery-plane {
+  filter: grayscale(0);
+}
+
+.gallery-plane {
+  position: absolute;
+  left: 0;
+  top: 0;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s, filter 1s;
+  background-size: 260% 260%;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: grayscale(0.9);
+  overflow: hidden;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Setup individual planes final position and initial position */
+.gallery-plane.plane-1 {
+  transform: none;
+}
+
+.gallery-plane.plane-2 {
+  left: 80%;
+  transform-origin: left center;
+  transform: rotateY(180deg);
+}
+
+.gallery-plane.plane-3 {
+  top: 80%;
+  transform-origin: center top;
+  transform: rotateX(-180deg);
+}
+
+.gallery-plane.plane-4 {
+  left: -80%;
+  transform-origin: right center;
+  transform: rotateY(-180deg);
+}
+
+.gallery-plane.plane-5 {
+  top: -80%;
+  transform-origin: center bottom;
+  transform: rotateX(180deg);
+}
+
+.gallery-plane.plane-6 {
+  top: 80%;
+  left: 80%;
+  transform-origin: center top;
+  transform: rotateX(-180deg);
+}
+
+.gallery-plane.plane-7 {
+  top: 80%;
+  left: -80%;
+  transform-origin: right center;
+  transform: rotateY(-180deg);
+}
+
+.gallery-plane.plane-8 {
+  top: -80%;
+  left: -80%;
+  transform-origin: center bottom;
+  transform: rotateX(180deg);
+}
+
+.gallery-plane.plane-9 {
+  top: -80%;
+  left: 80%;
+  transform-origin: left center;
+  transform: rotateY(180deg);
+}
+
+/* Setup transition-delay for mouseout state */
+.gallery-plane.plane-2,
+.gallery-plane.plane-3,
+.gallery-plane.plane-4,
+.gallery-plane.plane-5 {
+  transition-delay: 0.03s;
+}
+
+.gallery-plane.plane-6,
+.gallery-plane.plane-7,
+.gallery-plane.plane-8,
+.gallery-plane.plane-9 {
+  transition-delay: 0s;
+}
+
+.gallery-item:hover .gallery-plane.plane-2,
+.gallery-item:hover .gallery-plane.plane-3,
+.gallery-item:hover .gallery-plane.plane-4,
+.gallery-item:hover .gallery-plane.plane-5 {
+  transition-delay: 0s;
+}
+
+.gallery-item:hover .gallery-plane.plane-6,
+.gallery-item:hover .gallery-plane.plane-7,
+.gallery-item:hover .gallery-plane.plane-8,
+.gallery-item:hover .gallery-plane.plane-9 {
+  transition-delay: 0.2s;
+}
+
+/* Setup planes final state */
+.gallery-item:hover .gallery-plane.plane-2,
+.gallery-item:hover .gallery-plane.plane-4,
+.gallery-item:hover .gallery-plane.plane-7,
+.gallery-item:hover .gallery-plane.plane-9 {
+  transform: rotateY(0);
+}
+
+.gallery-item:hover .gallery-plane.plane-3,
+.gallery-item:hover .gallery-plane.plane-5,
+.gallery-item:hover .gallery-plane.plane-6,
+.gallery-item:hover .gallery-plane.plane-8 {
+  transform: rotateX(0);
+}
+
+/* Set background position */
+.gallery-plane {
+  background-size: 260% 260%;
+}
+
+.gallery-plane.plane-1 {
+  background-position: center center;
+}
+
+.gallery-plane.plane-2 {
+  background-position: right center;
+}
+
+.gallery-plane.plane-3 {
+  background-position: center bottom;
+}
+
+.gallery-plane.plane-4 {
+  background-position: left center;
+}
+
+.gallery-plane.plane-5 {
+  background-position: center top;
+}
+
+.gallery-plane.plane-6 {
+  background-position: right bottom;
+}
+
+.gallery-plane.plane-7 {
+  background-position: left bottom;
+}
+
+.gallery-plane.plane-8 {
+  background-position: left top;
+}
+
+.gallery-plane.plane-9 {
+  background-position: right top;
+}

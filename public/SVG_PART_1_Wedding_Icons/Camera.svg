@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="d" data-name="Icons" xmlns="http://www.w3.org/2000/svg" width="1.739in" height="1.768in" viewBox="0 0 125.205 127.311">
+  <path d="m9.525,51.345l-2.026,4.187c-.412.851-.626,1.785-.626,2.731v47.361c0,3.463,2.807,6.27,6.27,6.27h98.665c3.463,0,6.27-2.807,6.27-6.27v-48.47c0-.92-.202-1.828-.593-2.661l-2.363-5.041c-.677-1.445-1.88-2.577-3.362-3.166l-14.9-5.919c-1.482-.589-2.684-1.72-3.361-3.163l-3.401-7.246c-1.033-2.201-3.245-3.606-5.676-3.606h-24.184c-2.393,0-4.578,1.363-5.631,3.512l-3.764,7.684c-.604,1.234-1.598,2.236-2.827,2.85l-34.077,7.53c-1.925.385-3.559,1.65-4.414,3.417Z" fill="none" stroke="#2e3c36" stroke-miterlimit="10" stroke-width="2"/>
+  <circle cx="72.277" cy="76.697" r="19.603" fill="none" stroke="#2e3c36" stroke-miterlimit="10" stroke-width="2"/>
+  <circle cx="72.277" cy="76.697" r="27.314" fill="none" stroke="#2e3c36" stroke-miterlimit="10" stroke-width="2"/>
+  <circle cx="72.277" cy="76.697" r="31.794" fill="none" stroke="#2e3c36" stroke-miterlimit="10" stroke-width="2"/>
+  <path d="m104.021,70.222c4.22,0,7.641,2.553,7.641,5.703s-3.421,5.703-7.641,5.703" fill="none" stroke="#2e3c36" stroke-miterlimit="10" stroke-width="2"/>
+  <ellipse cx="23.443" cy="51.755" rx="5.408" ry="3.321" transform="translate(-11.712 7.12) rotate(-13.856)" fill="none" stroke="#2e3c36" stroke-miterlimit="10" stroke-width="2"/>
+  <circle cx="39.753" cy="53.618" r="2.584" fill="none" stroke="#2e3c36" stroke-miterlimit="10" stroke-width="2"/>
+  <path d="m26.752,44.803l-.725-3.138c-.33-1.177.445-2.378,1.653-2.563l16.194-3.146c.668-.102,1.471.954,1.615,1.615l.591,2.949" fill="none" stroke="#2e3c36" stroke-miterlimit="10" stroke-width="2"/>
+  <ellipse cx="63.984" cy="30.629" rx="2.043" ry="2.139" fill="none" stroke="#2e3c36" stroke-miterlimit="10" stroke-width="2"/>
+  <ellipse cx="68.612" cy="30.876" rx="1.582" ry="1.832" fill="none" stroke="#2e3c36" stroke-miterlimit="10" stroke-width="2"/>
+  <ellipse cx="73.068" cy="30.876" rx="1.582" ry="1.832" fill="none" stroke="#2e3c36" stroke-miterlimit="10" stroke-width="2"/>
+  <ellipse cx="77.3" cy="30.876" rx="1.582" ry="1.832" fill="none" stroke="#2e3c36" stroke-miterlimit="10" stroke-width="2"/>
+  <ellipse cx="81.422" cy="30.876" rx="1.582" ry="1.832" fill="none" stroke="#2e3c36" stroke-miterlimit="10" stroke-width="2"/>
+  <path d="m29.06,45.064c1.604,1.617,4.99,6.917,4.99,12.306s-8.822,4.402-8.822,8.893v45.363" fill="none" stroke="#2e3c36" stroke-miterlimit="10" stroke-width="2"/>
+  <path d="m72.277,72.162c1.963-3.886,6.374-4.786,8.191-1.637h0c1.059,1.835.811,4.144-.615,5.712l-7.14,8.437c-.229.27-.645.27-.874,0l-7.14-8.437c-1.425-1.568-1.674-3.877-.615-5.712h0c1.817-3.149,6.268-2.585,8.191,1.637" fill="#2e3c36" stroke="#2e3c36" stroke-miterlimit="10"/>
+</svg>
