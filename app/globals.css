@@ -6,6 +6,22 @@
 }
 
 @font-face {
+  font-family: 'Amsterdam';
+  src: url('/Amsterdam.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('/Cormorant_Garamond (1)/CormorantGaramond-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'Catchy Mager';
   src: url('/catchy-mager/Catchy Mager.ttf') format('truetype');
   font-weight: normal;
@@ -94,6 +110,39 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme variables: default palette (Rose & Burgundy) */
+:root {
+  /* space-separated RGB values for Tailwind alpha support */
+  --wedding-gold: 212 175 55;        /* #D4AF37 */
+  --wedding-rose: 247 231 231;       /* #F7E7E7 */
+  --wedding-cream: 255 248 240;      /* #FFF8F0 */
+  --wedding-burgundy: 139 21 56;     /* #8B1538 */
+  --wedding-sage: 156 175 136;       /* #9CAF88 */
+  --wedding-ivory: 253 253 247;      /* #FDFDF7 */
+  --wedding-charcoal: 44 44 44;      /* #2C2C2C */
+}
+
+/* Alternative palettes — toggle by adding a class to <body> or <html> */
+.theme-emerald {
+  --wedding-gold: 16 185 129;        /* emerald */
+  --wedding-rose: 236 253 245;       /* mint backdrop */
+  --wedding-cream: 240 253 244;
+  --wedding-burgundy: 4 120 87;      /* deep emerald */
+  --wedding-sage: 52 211 153;
+  --wedding-ivory: 250 250 249;
+  --wedding-charcoal: 31 41 55;
+}
+
+.theme-navy {
+  --wedding-gold: 234 179 8;         /* amber */
+  --wedding-rose: 226 232 240;       /* slate-200 */
+  --wedding-cream: 241 245 249;      /* slate-100 */
+  --wedding-burgundy: 30 41 59;      /* slate-800 */
+  --wedding-sage: 100 116 139;
+  --wedding-ivory: 248 250 252;      /* slate-50 */
+  --wedding-charcoal: 15 23 42;      /* slate-900 */
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -101,7 +150,7 @@
   
   body {
     font-family: 'Catchy Mager', sans-serif;
-    background: linear-gradient(135deg, #FFF8F0 0%, #F7E7E7 100%);
+    background: linear-gradient(135deg, rgb(var(--wedding-cream)) 0%, rgb(var(--wedding-rose)) 100%);
     min-height: 100vh;
   }
 }
@@ -130,6 +179,78 @@
   .container-custom {
     @apply max-w-7xl mx-auto;
   }
+
+  /* Minimal surfaces and separators for a lighter look than cards */
+  .feature {
+    @apply rounded-2xl border border-white/30 bg-white/40 backdrop-blur-sm shadow-sm;
+  }
+  .feature-plain {
+    @apply rounded-2xl border border-white/20 bg-transparent shadow-none;
+  }
+  .soft-divider {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-wedding-charcoal/10 to-transparent;
+  }
+
+  /* Hero helpers */
+  .hero-title {
+    text-shadow: 0 8px 30px rgba(0,0,0,0.45);
+  }
+  .hero-bottom-gradient {
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 35%, transparent 70%);
+  }
+}
+
+/* 2.5D Parallax Gallery — inspired by https://prismic.io/blog/css-image-effects#32-25d */
+.parallax-25d-wrapper {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 0px 30px 5px rgba(0,0,0,.15);
+  border: 10px solid rgba(255,255,255,0.9);
+  transform: rotate(-1.5deg);
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+.parallax-25d {
+  position: absolute;
+  inset: 0;
+  margin-left: -80px; /* similar lateral drift */
+  z-index: 1;
+  animation-duration: 40s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-play-state: paused;
+  transform-style: preserve-3d;
+}
+.parallax-25d.background { animation-name: p25d-bg; }
+.parallax-25d.foreground { z-index: 3; animation-name: p25d-foreground; }
+.parallax-25d.midground { z-index: 2; animation-name: p25d-midground; }
+
+/* Ejecutar animación al hover del wrapper */
+.p25d-hover:hover .parallax-25d { animation-play-state: running; }
+/* Ejecutar animación cuando el wrapper tiene la clase de run (via IntersectionObserver o hover) */
+.p25d-run .parallax-25d { animation-play-state: running; }
+
+@keyframes p25d-bg {
+  0% { transform: translateZ(-80px) scale(1.05) translateX(0); }
+  100% { transform: translateZ(-80px) scale(1.05) translateX(-60px); }
+}
+@keyframes p25d-midground {
+  0% { transform: translateZ(0px) scale(1.12) translateX(0); }
+  100% { transform: translateZ(0px) scale(1.12) translateX(-90px); }
+}
+@keyframes p25d-foreground {
+  0% { transform: translateZ(60px) scale(1.25) translateX(0); filter: blur(0px); }
+  100% { transform: translateZ(60px) scale(1.25) translateX(-120px); filter: blur(6px); }
+}
+
+/* Auto-layer masks para cuando se usa una sola imagen */
+.p25d-auto-mid {
+  -webkit-mask-image: radial-gradient(ellipse at 55% 55%, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 95%);
+  mask-image: radial-gradient(ellipse at 55% 55%, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 95%);
+}
+.p25d-auto-fore {
+  -webkit-mask-image: radial-gradient(ellipse at 60% 60%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 85%);
+  mask-image: radial-gradient(ellipse at 60% 60%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 85%);
 }
 
 /* Gallery 3D Spread Effect */
@@ -151,6 +272,68 @@
   gap: 1rem;
   max-width: 800px;
   margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .gallery-3d-container {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .gallery-3d {
+    gap: 0.5rem;
+    max-width: 70%;
+    padding: 0 1rem;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
+  
+  .gallery-item {
+    transform: rotateX(25deg) scale(0.6);
+    margin: 0.05em;
+    width: 200px;
+    height: 200px;
+  }
+  
+  .gallery-item:hover {
+    transform: translateZ(60px) rotateX(10deg) scale(0.75);
+  }
+  
+  /* Ajustar los planos para móvil - más compactos */
+  .gallery-plane.plane-2 {
+    left: 100%;
+  }
+  
+  .gallery-plane.plane-3 {
+    top: 100%;
+  }
+  
+  .gallery-plane.plane-4 {
+    left: -100%;
+  }
+  
+  .gallery-plane.plane-5 {
+    top: -100%;
+  }
+  
+  .gallery-plane.plane-6 {
+    top: 100%;
+    left: 100%;
+  }
+  
+  .gallery-plane.plane-7 {
+    top: 100%;
+    left: -100%;
+  }
+  
+  .gallery-plane.plane-8 {
+    top: -100%;
+    left: -100%;
+  }
+  
+  .gallery-plane.plane-9 {
+    top: -100%;
+    left: 100%;
+  }
 }
 
 @media (max-width: 768px) {

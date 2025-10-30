@@ -8,18 +8,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'wedding-gold': '#D4AF37',
-        'wedding-rose': '#F7E7E7',
-        'wedding-cream': '#FFF8F0',
-        'wedding-burgundy': '#8B1538',
-        'wedding-sage': '#9CAF88',
-        'wedding-ivory': '#FDFDF7',
-        'wedding-charcoal': '#2C2C2C',
+        // Colors are driven by CSS variables for easy theming.
+        // Use space-separated RGB values in CSS variables for proper alpha support.
+        'wedding-gold': 'rgb(var(--wedding-gold) / <alpha-value>)',
+        'wedding-rose': 'rgb(var(--wedding-rose) / <alpha-value>)',
+        'wedding-cream': 'rgb(var(--wedding-cream) / <alpha-value>)',
+        'wedding-burgundy': 'rgb(var(--wedding-burgundy) / <alpha-value>)',
+        'wedding-sage': 'rgb(var(--wedding-sage) / <alpha-value>)',
+        'wedding-ivory': 'rgb(var(--wedding-ivory) / <alpha-value>)',
+        'wedding-charcoal': 'rgb(var(--wedding-charcoal) / <alpha-value>)',
       },
       fontFamily: {
         'andasia': ['Andasia', 'cursive'],
         'catchy': ['Catchy Mager', 'sans-serif'],
         'alex': ['Alex Brush', 'cursive'],
+        'amsterdam': ['Amsterdam', 'cursive'],
+        'cormorant': ['Cormorant Garamond', 'serif'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
