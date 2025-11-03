@@ -128,8 +128,8 @@ export default function DemoPage({ params }: { params: { slug: string } }) {
               <h2 className="text-4xl md:text-5xl font-catchy text-wedding-burgundy mb-6">Ceremonia</h2>
               <div className="space-y-4 text-lg text-wedding-charcoal">
                 <p className="font-semibold">Parroquia San José</p>
-                <p>9 de Julio 308</p>
-                <p>Crespo, Entre Ríos</p>
+                <p>9 de Julio 000</p>
+                <p>Cuidad, Provincia</p>
                 <p className="text-wedding-burgundy font-bold text-xl font-alex">17:00 HS</p>
               </div>
               <button className="btn-primary mt-8">Cómo llegar</button>
@@ -165,9 +165,9 @@ export default function DemoPage({ params }: { params: { slug: string } }) {
               </div>
               <h2 className="text-4xl md:text-5xl font-catchy text-wedding-burgundy mb-6">Fiesta</h2>
               <div className="space-y-4 text-lg text-wedding-charcoal">
-                <p className="font-semibold">Salón Castillo</p>
-                <p>Acc. Pte. Avellaneda y Alemanes del Volga</p>
-                <p>Crespo, Entre Ríos</p>
+                <p className="font-semibold">Lugar</p>
+                <p>Direccion</p>
+                <p>Ciudad, Provincia</p>
                 <p className="text-wedding-burgundy font-bold text-xl font-alex">18:00 HS</p>
               </div>
               <button className="btn-primary mt-8">Cómo llegar</button>
@@ -256,7 +256,7 @@ export default function DemoPage({ params }: { params: { slug: string } }) {
           <h2 className="text-4xl md:text-5xl font-catchy text-wedding-burgundy text-center mb-16">ALOJAMIENTO</h2>
           <p className="text-xl text-wedding-charcoal/80 text-center mb-12 max-w-2xl mx-auto">Te sugerimos alojamientos posibles para los días de nuestra boda! Hacé clic en cada uno para ver mas info</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {['Hotel Crespo', 'Hotel Garten', 'Hotel El Aguila', 'Cabañas El Solar de Crespo'].map((hotel, index) => (
+            {['Hotel xx', 'Hotel yy', 'Hotel zz', 'Hotel aa'].map((hotel, index) => (
               <div key={hotel} className="feature-plain p-6 text-center hover:bg-white/20 transition-colors duration-300" {...useReveal(24, index * 100)}>
                 <WeddingIcon name="Calendar" size="lg" type="svg" className="text-wedding-gold mx-auto mb-4" animated />
                 <h3 className="text-lg font-catchy text-wedding-burgundy">{hotel}</h3>
@@ -268,13 +268,9 @@ export default function DemoPage({ params }: { params: { slug: string } }) {
 
       <footer className="bg-wedding-charcoal text-white py-12">
         <div className="container-custom text-center">
-          <div className="flex justify-center space-x-8 mb-8">
-            <WeddingIcon name="instagram" size="md" className="text-wedding-gold hover:text-white cursor-pointer transition-colors" />
-            <WeddingIcon name="facebook" size="md" className="text-wedding-gold hover:text-white cursor-pointer transition-colors" />
-          </div>
           <p className="text-wedding-gold font-alex text-2xl mb-4">¡Gracias!</p>
-          <p className="text-wedding-gold/80">@yendoinvitaciones</p>
-          <p className="text-sm text-white/60 mt-4">Yendo ® Invitaciones digitales Web Todos los derechos reservados.</p>
+          <p className="text-wedding-gold/80">@waistenprogramacion</p>
+          <p className="text-sm text-white/60 mt-4">Waisten Programacion ® Invitaciones digitales Web Todos los derechos reservados.</p>
         </div>
       </footer>
     </main>

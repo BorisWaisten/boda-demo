@@ -101,9 +101,9 @@ export default function ModernDemo() {
             <div {...useReveal(20, 120)} className="md:col-span-2">
               <div className="grid sm:grid-cols-2 gap-6">
                 <div className="rounded-xl bg-white/70 backdrop-blur p-6">
-                  <p className="font-semibold text-wedding-charcoal">Parroquia San José</p>
-                  <p>9 de Julio 308</p>
-                  <p>Crespo, Entre Ríos</p>
+                  <p className="font-semibold text-wedding-charcoal">Lugar</p>
+                  <p>Direccion</p>
+                  <p>Ciudad, Provincia</p>
                 </div>
                 <div className="rounded-xl border border-white/40 p-6">
                   <p className="text-wedding-burgundy font-alex text-2xl">17:00 HS</p>
@@ -154,8 +154,8 @@ export default function ModernDemo() {
 
       <footer className="bg-wedding-charcoal text-white py-12">
         <div className="container-custom text-center">
-          <p className="text-wedding-gold font-alex text-2xl mb-2">@yendoinvitaciones</p>
-          <p className="text-sm text-white/60">Yendo ® Invitaciones digitales Web Todos los derechos reservados.</p>
+          <p className="text-wedding-gold font-alex text-2xl mb-2">@waistenprogramacion</p>
+          <p className="text-sm text-white/60">Waisten Programacion ® Invitaciones digitales Web Todos los derechos reservados.</p>
         </div>
       </footer>
     </main>
