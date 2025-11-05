@@ -39,9 +39,9 @@ export const DEMOS: Record<string, DemoConfig> = {
       { src: '/boda/boda6.avif', alt: 'Boda', width: 200, height: 150 },
       { src: '/boda/boda5.avif', alt: 'Momentos', width: 200, height: 150 },
       { src: '/boda/boda4.avif', alt: 'Celebración', width: 200, height: 150 },
-      { src: '/boda/boda3.avif', alt: 'Fiesta', width: 200, height: 150 },
-      { src: '/boda/boda2.avif', alt: 'Ceremonia', width: 200, height: 150 },
-      { src: '/boda/boda1.avif', alt: 'Momentos de boda', width: 200, height: 150 },
+      { src: '/boda/boda9.jpg', alt: 'Fiesta', width: 200, height: 150 },
+      { src: '/boda/boda7.jpg', alt: 'Ceremonia', width: 200, height: 150 },
+      { src: '/boda/boda8.jpeg', alt: 'Momentos de boda', width: 200, height: 150 },
     ],
   },
 }
