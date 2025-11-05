@@ -1,16 +1,43 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { motion, useInView } from 'framer-motion'
 import CountdownTimer from '../../../components/CountdownTimer'
 import WeddingIcon from '../../../components/WeddingIcon'
 import BackgroundImage from '../../../components/BackgroundImage'
 import { DEMOS } from '../../../lib/demos'
-import Parallax25D from '../../../components/Parallax25D'
+import Image from 'next/image'
 
 export default function ModernDemo() {
   const config = DEMOS['demo2']
 
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [showRSVP, setShowRSVP] = useState(false)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [direction, setDirection] = useState(0) // -1: left, 1: right
+
+  const handleRSVP = () => setShowRSVP(true)
+
+  const goToImage = (newIndex: number) => {
+    // Calcular dirección considerando el wrap circular
+    const diff = newIndex - currentImageIndex
+    const wrapDiff = diff > config.gallery.length / 2 ? diff - config.gallery.length : diff < -config.gallery.length / 2 ? diff + config.gallery.length : diff
+    
+    if (wrapDiff > 0) {
+      setDirection(1)
+    } else if (wrapDiff < 0) {
+      setDirection(-1)
+    }
+    setCurrentImageIndex(newIndex)
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDirection(1)
+      setCurrentImageIndex((prev) => (prev + 1) % config.gallery.length)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [config.gallery.length])
 
   useEffect(() => {
     const onScroll = () => setScrollProgress(Math.min(1, window.scrollY / 240))
@@ -21,30 +48,16 @@ export default function ModernDemo() {
   const titleOpacity = 1 - scrollProgress
   const barOpacity = Math.max(0, scrollProgress * 1.2 - 0.2)
 
-  const useReveal = (offset: number = 24, delayMs: number = 0) => {
-    const ref = useRef<HTMLDivElement | null>(null)
-    const [v, setV] = useState(false)
-    useEffect(() => {
-      const n = ref.current
-      if (!n) return
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            setV(true)
-            obs.unobserve(e.target)
-          }
-        })
-      }, { threshold: 0.15 })
-      obs.observe(n)
-      return () => obs.disconnect()
-    }, [])
+  // Hook para animaciones con framer-motion
+  const useReveal = (offset: number = 30, delay: number = 0) => {
+    const ref = useRef(null)
+    const isInView = useInView(ref, { once: true, margin: "-100px" })
+    
     return {
       ref,
-      style: {
-        opacity: v ? 1 : 0,
-        transform: `translateY(${v ? 0 : offset}px)`,
-        transition: `opacity 650ms ease-out ${delayMs}ms, transform 650ms ease-out ${delayMs}ms`,
-      } as React.CSSProperties,
+      initial: { opacity: 0, y: offset },
+      animate: isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: offset },
+      transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }
     }
   }
 
@@ -52,112 +65,594 @@ export default function ModernDemo() {
     <main className={`min-h-screen ${config.themeClass ?? ''} bg-gradient-to-br from-wedding-cream via-wedding-rose to-wedding-ivory font-cormorant`}>
       {/* Hero más minimalista */}
       <section className="relative min-h-screen overflow-hidden">
-        <BackgroundImage src={config.heroImage} alt="Hero" className="opacity-80" priority />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center" style={{ opacity: titleOpacity, transform: `scale(${1 + scrollProgress * 0.05})` }}>
-            <h1 className="text-7xl md:text-8xl font-amsterdam text-white hero-title">{config.coupleNames}</h1>
-          </div>
+        {/* Video de fondo */}
+        <div className="absolute inset-0 opacity-80">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/boda/videp-boda1.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/20"></div>
         </div>
+        <motion.div 
+          className="absolute inset-0 flex items-center justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <motion.div 
+            className="text-center"
+            initial={{ opacity: 0, scale: 0.8, y: 30 }}
+            animate={{ 
+              opacity: titleOpacity, 
+              scale: 1 + scrollProgress * 0.05,
+              y: scrollProgress * 20
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.h1 
+              className="text-7xl md:text-8xl font-amsterdam text-white hero-title"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: titleOpacity, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              {config.coupleNames}
+            </motion.h1>
+          </motion.div>
+        </motion.div>
         {/* Barra inferior con fecha + contador (siempre abajo del hero) */}
-        <div className="absolute inset-x-0 bottom-0 z-10">
-          <div className="backdrop-blur-md bg-black/30 py-6" style={{ opacity: barOpacity }}>
+        <motion.div 
+          className="absolute inset-x-0 bottom-0 z-10"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <motion.div 
+            className="backdrop-blur-md bg-black/30 py-6"
+            animate={{ opacity: barOpacity }}
+            transition={{ duration: 0.3 }}
+          >
             <div className="container-custom text-center text-white">
-              <div className="text-2xl md:text-3xl mb-4">{config.dateLabel}</div>
+              <motion.div 
+                className="text-2xl md:text-3xl mb-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+              >
+                {config.dateLabel}
+              </motion.div>
               <div className="max-w-4xl mx-auto">
                 <CountdownTimer />
               </div>
             </div>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Gallery Section - Carrusel Simple */}
+      <section className="section-padding bg-gradient-to-br from-wedding-cream to-wedding-ivory overflow-x-visible overflow-y-visible">
+        <div className="container-custom relative z-10 overflow-x-visible overflow-y-visible">
+          <motion.div 
+            className="text-center mb-12"
+            {...useReveal(30, 0)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 200 }}
+            >
+              <WeddingIcon name="Camera" size="xl" type="svg" className="text-wedding-gold mx-auto mb-6" animated />
+            </motion.div>
+            <motion.h2 
+              className="text-4xl md:text-5xl font-amsterdam text-wedding-burgundy mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              Momentos Especiales
+            </motion.h2>
+            <motion.p 
+              className="text-xl text-wedding-charcoal/80 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              Compartimos algunos de nuestros momentos favoritos
+            </motion.p>
+          </motion.div>
+          <motion.div 
+            className="w-full pb-8 overflow-hidden"
+            {...useReveal(30, 0.2)}
+          >
+            <div className="relative flex items-center justify-center h-[500px] md:h-[600px] lg:h-[800px]">
+              {/* Imagen anterior */}
+              <motion.div
+                key={`prev-${currentImageIndex}`}
+                initial={{ x: direction === 1 ? -200 : 0, opacity: direction === 1 ? 0 : 0.7, scale: direction === 1 ? 0.8 : 0.9 }}
+                animate={{ x: 0, opacity: 0.7, scale: 0.9 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute left-4 md:left-8 lg:left-16 cursor-pointer z-10 hover:scale-95 hover:opacity-80"
+                onClick={() => goToImage((currentImageIndex - 1 + config.gallery.length) % config.gallery.length)}
+              >
+                <div className="rounded-2xl overflow-hidden shadow-2xl ring-2 ring-wedding-gold/50 border-2 border-white/70">
+                  <div className="relative w-40 h-56 md:w-48 md:h-72 lg:w-56 lg:h-80">
+                    <Image
+                      src={config.gallery[(currentImageIndex - 1 + config.gallery.length) % config.gallery.length].src}
+                      alt={config.gallery[(currentImageIndex - 1 + config.gallery.length) % config.gallery.length].alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+              
+              {/* Imagen activa */}
+              <motion.div
+                key={`active-${currentImageIndex}`}
+                initial={{ x: direction === 1 ? 200 : -200, opacity: 0, scale: 0.8 }}
+                animate={{ x: 0, opacity: 1, scale: 1 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="relative z-20"
+              >
+                <div className="rounded-2xl overflow-hidden shadow-2xl ring-4 ring-wedding-gold border-4 border-white">
+                  <div className="relative w-48 h-64 md:w-60 md:h-80 lg:w-[19rem] lg:h-[28rem]">
+                    <Image
+                      src={config.gallery[currentImageIndex].src}
+                      alt={config.gallery[currentImageIndex].alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 192px, (max-width: 1024px) 240px, 288px"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Imagen siguiente */}
+              <motion.div
+                key={`next-${currentImageIndex}`}
+                initial={{ x: direction === -1 ? 200 : 0, opacity: direction === -1 ? 0 : 0.7, scale: direction === -1 ? 0.8 : 0.9 }}
+                animate={{ x: 0, opacity: 0.7, scale: 0.9 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute right-4 md:right-8 lg:right-16 cursor-pointer z-10 hover:scale-95 hover:opacity-80"
+                onClick={() => goToImage((currentImageIndex + 1) % config.gallery.length)}
+              >
+                <div className="rounded-2xl overflow-hidden shadow-2xl ring-2 ring-wedding-gold/50 border-2 border-white/70">
+                  <div className="relative w-40 h-56 md:w-48 md:h-72 lg:w-56 lg:h-80">
+                    <Image
+                      src={config.gallery[(currentImageIndex + 1) % config.gallery.length].src}
+                      alt={config.gallery[(currentImageIndex + 1) % config.gallery.length].alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+          <motion.div 
+            className="flex justify-center gap-2 mt-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            {config.gallery.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToImage(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  index === currentImageIndex
+                    ? 'w-8 h-2 bg-wedding-gold'
+                    : 'w-2 h-2 bg-wedding-gold/40 hover:bg-wedding-gold/60'
+                }`}
+                aria-label={`Ir a imagen ${index + 1}`}
+              />
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Ceremony Section */}
+      <section className="section-padding h-screen flex items-center justify-center bg-white/50 relative">
+        <BackgroundImage src={config.ceremonyBg} alt="Church background" className="opacity-20" />
+        <div className="container-custom relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div 
+              className="text-center md:text-left"
+              {...useReveal(30, 0)}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <motion.div 
+                className="inline-flex items-center justify-center w-16 h-16 bg-wedding-gold rounded-full mb-6"
+                initial={{ scale: 0, rotate: -180 }}
+                whileInView={{ scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+              >
+                <WeddingIcon name="Church" size="lg" type="svg" className="text-white" animated />
+              </motion.div>
+              <motion.h2 
+                className="text-4xl md:text-5xl font-amsterdam text-wedding-burgundy mb-6"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                Ceremonia
+              </motion.h2>
+              <motion.div 
+                className="space-y-4 text-lg text-wedding-charcoal"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <p className="font-semibold">Parroquia San José</p>
+                <p>9 de Julio 000</p>
+                <p>Ciudad, Provincia</p>
+                <p className="text-wedding-burgundy font-bold text-xl font-alex">17:00 HS</p>
+              </motion.div>
+              <motion.button 
+                className="btn-primary mt-8"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+              >
+                Cómo llegar
+              </motion.button>
+            </motion.div>
+            <motion.div 
+              className="relative"
+              {...useReveal(30, 0.2)}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <motion.div 
+                className="p-8 text-center rounded-2xl bg-white/70 backdrop-blur border border-white/40"
+                initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
+                whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <WeddingIcon name="Church" size="xl" type="svg" className="text-wedding-gold mx-auto mb-4" animated />
+                <h3 className="text-2xl font-amsterdam text-wedding-burgundy mb-3">Bendición Matrimonial</h3>
+                <div className="w-16 h-0.5 bg-wedding-gold mx-auto mb-4" />
+                <p className="text-wedding-charcoal/70">Unidos en el amor y la fe, comenzamos esta nueva etapa de nuestras vidas</p>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Galería 2.5D */}
+      {/* Party Section */}
+      <section className="section-padding h-screen flex items-center justify-center relative">
+        <BackgroundImage src={config.partyBg} alt="Party background" className="opacity-20" />
+        <div className="container-custom">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div 
+              className="relative order-2 md:order-1"
+              {...useReveal(30, 0)}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <motion.div 
+                className="p-8 text-center rounded-2xl bg-white/70 backdrop-blur border border-white/40"
+                initial={{ opacity: 0, scale: 0.9, rotateY: -15 }}
+                whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <WeddingIcon name="WeddingCake" size="xl" type="svg" className="text-wedding-gold mx-auto mb-4" animated />
+                <h3 className="text-2xl font-amsterdam text-wedding-burgundy mb-3">Fiesta de Celebración</h3>
+                <div className="w-16 h-0.5 bg-wedding-gold mx-auto mb-4" />
+                <p className="text-wedding-charcoal/70">Después de la ceremonia, los esperamos para celebrar con música, baile y mucha alegría</p>
+              </motion.div>
+            </motion.div>
+            <motion.div 
+              className="text-center md:text-left order-1 md:order-2"
+              {...useReveal(30, 0.2)}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <motion.div 
+                className="inline-flex items-center justify-center w-16 h-16 bg-wedding-burgundy rounded-full mb-6"
+                initial={{ scale: 0, rotate: 180 }}
+                whileInView={{ scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ type: "spring", stiffness: 200, delay: 0.3 }}
+              >
+                <WeddingIcon name="Music" size="lg" type="svg" className="text-white" animated />
+              </motion.div>
+              <motion.h2 
+                className="text-4xl md:text-5xl font-amsterdam text-wedding-burgundy mb-6"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                Fiesta
+              </motion.h2>
+              <motion.div 
+                className="space-y-4 text-lg text-wedding-charcoal"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <p className="font-semibold">Lugar</p>
+                <p>Direccion</p>
+                <p>Ciudad, Provincia</p>
+                <p className="text-wedding-burgundy font-bold text-xl font-alex">18:00 HS</p>
+              </motion.div>
+              <motion.button 
+                className="btn-primary mt-8"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+              >
+                Cómo llegar
+              </motion.button>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Music Request Section */}
+      <section className="section-padding bg-wedding-rose/30">
+        <motion.div 
+          className="container-custom text-center"
+          {...useReveal(30, 0)}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+          >
+            <WeddingIcon name="Music" size="xl" type="svg" className="text-wedding-gold mx-auto mb-6" animated />
+          </motion.div>
+          <motion.h2 
+            className="text-4xl md:text-5xl font-amsterdam text-wedding-burgundy mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            ¡Que no falte tu tema favorito!
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-wedding-charcoal/80 mb-8 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            Ayudanos a armar la lista de canciones para nuestra fiesta
+          </motion.p>
+          <motion.button 
+            className="btn-secondary"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            Sugerí tu tema acá
+          </motion.button>
+        </motion.div>
+      </section>
+
+      {/* Details Section */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="flex gap-1 overflow-x-auto pb-4">
-            {[1,2,3,4,5].map((n) => (
-              <Parallax25D
-                key={n}
-                width={400}
-                height={500}
-                background={{ src: `/boda/boda${n}.avif` }}
-                trigger="hover"
-              />
+          <motion.h2 
+            className="text-4xl md:text-5xl font-amsterdam text-wedding-burgundy text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Acá te contamos todos los detalles…
+          </motion.h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { icon: 'WeddingRingsSet1', title: 'Dress Code', content: 'Elegante', description: null },
+              { icon: 'WeddingGifts', title: 'Regalo', content: '¡El mejor regalo es tu presencia!', description: 'Si deseas realizarnos un regalo, te brindamos nuestros datos bancarios' },
+              { icon: 'Balloons', title: 'Niños', content: 'Este es un festejo destinado solo a adultos', description: null }
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                className="p-8 text-center rounded-2xl bg-white/70 backdrop-blur border border-white/40 group"
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2, type: "spring", stiffness: 100 }}
+                whileHover={{ scale: 1.05, y: -10, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
+              >
+                <motion.div
+                  initial={{ scale: 0, rotate: -180 }}
+                  whileInView={{ scale: 1, rotate: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ type: "spring", stiffness: 200, delay: index * 0.2 + 0.3 }}
+                >
+                  <WeddingIcon name={item.icon as any} size="xl" type="svg" className="text-wedding-gold mx-auto mb-6" animated />
+                </motion.div>
+                <h3 className="text-2xl font-amsterdam text-wedding-burgundy mb-2">{item.title}</h3>
+                <div className="w-16 h-0.5 bg-wedding-gold mx-auto mb-4" />
+                <p className={item.description ? "text-wedding-charcoal mb-3" : "text-3xl font-alex text-wedding-burgundy"}>{item.content}</p>
+                {item.description && <p className="text-sm text-wedding-charcoal/70">{item.description}</p>}
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Sección Ceremonia (layout en línea moderna) */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <div className="grid md:grid-cols-3 gap-10 items-start">
-            <div {...useReveal(20)} className="md:col-span-1">
-              <div className="w-14 h-14 rounded-full bg-wedding-gold grid place-items-center mb-4">
-                <WeddingIcon name="Church" size="md" type="svg" className="text-white" animated />
-              </div>
-              <h2 className="text-3xl md:text-4xl font-amsterdam text-wedding-burgundy">Ceremonia</h2>
-            </div>
-            <div {...useReveal(20, 120)} className="md:col-span-2">
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div className="rounded-xl bg-white/70 backdrop-blur p-6">
-                  <p className="font-semibold text-wedding-charcoal">Lugar</p>
-                  <p>Direccion</p>
-                  <p>Ciudad, Provincia</p>
-                </div>
-                <div className="rounded-xl border border-white/40 p-6">
-                  <p className="text-wedding-burgundy font-alex text-2xl">17:00 HS</p>
-                  <button className="btn-primary mt-4">Cómo llegar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Sección Fiesta con panel oscuro */}
-      <section className="section-padding relative">
-        <BackgroundImage src={config.partyBg} alt="Party" className="opacity-40" />
-        <div className="container-custom relative z-10">
-          <div className="rounded-2xl bg-black/30 backdrop-blur-md p-10 text-white" {...useReveal(24)}>
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-full bg-wedding-gold grid place-items-center">
-                <WeddingIcon name="Music" size="md" type="svg" className="text-white" animated />
-              </div>
-              <h2 className="text-3xl md:text-4xl font-amsterdam">Fiesta</h2>
-            </div>
-            <p className="text-white/90">Después de la ceremonia, los esperamos para celebrar con música, baile y mucha alegría.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Detalles en chips */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <h3 className="text-3xl md:text-4xl font-amsterdam text-wedding-burgundy text-center mb-10">Detalles</h3>
-          <div className="flex flex-wrap justify-center gap-4" {...useReveal(16)}>
-            <span className="px-5 py-3 rounded-full bg-white/70 backdrop-blur border border-white/40 text-wedding-charcoal">Dress code: <b className="text-wedding-burgundy">Elegante</b></span>
-            <span className="px-5 py-3 rounded-full bg-white/70 backdrop-blur border border-white/40 text-wedding-charcoal">Regalo: <b className="text-wedding-burgundy">Tu presencia</b></span>
-            <span className="px-5 py-3 rounded-full bg-white/70 backdrop-blur border border-white/40 text-wedding-charcoal">Niños: <b className="text-wedding-burgundy">Solo adultos</b></span>
-          </div>
-        </div>
-      </section>
-
-      {/* RSVP claro sobre color principal */}
+      {/* RSVP Section */}
       <section className="section-padding bg-wedding-burgundy text-white">
-        <div className="container-custom text-center" {...useReveal(24)}>
-          <h2 className="text-3xl md:text-4xl font-catchy mb-4">Confirmá tu asistencia</h2>
-          <p className="mb-6 text-white/90">Completalo antes del 12/10/2025</p>
-          <button className="btn-primary bg-white text-wedding-burgundy hover:bg-wedding-gold hover:text-white">Confirmar</button>
+        <motion.div 
+          className="container-custom text-center"
+          {...useReveal(30, 0)}
+        >
+          <motion.h2 
+            className="text-4xl md:text-5xl font-amsterdam mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Confirmanos tu asistencia
+          </motion.h2>
+          <motion.p 
+            className="text-xl mb-8 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Te pedimos que completes este formulario antes del 12/10/2025. Si fuiste invitado/a con un acompañante, completar un formulario por persona
+          </motion.p>
+          {!showRSVP ? (
+            <motion.div 
+              className="space-y-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <motion.button 
+                onClick={handleRSVP} 
+                className="btn-primary bg-white text-wedding-burgundy hover:bg-wedding-gold hover:text-white"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                CONFIRMAR MI ASISTENCIA
+              </motion.button>
+              <div>
+                <motion.button 
+                  className="btn-secondary border-white text-white hover:bg-white hover:text-wedding-burgundy"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  AGENDAR EL EVENTO EN MI CALENDARIO
+                </motion.button>
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div 
+              className="max-w-md mx-auto"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
+            >
+              <motion.div 
+                className="rounded-2xl bg-white/10 backdrop-blur p-8 text-wedding-charcoal"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <h3 className="text-2xl font-amsterdam text-white mb-6">¡Gracias por confirmar!</h3>
+                <p className="mb-4 text-white/90">Hemos recibido tu confirmación. Te esperamos.</p>
+                <motion.button 
+                  onClick={() => setShowRSVP(false)} 
+                  className="btn-primary bg-white text-wedding-burgundy hover:bg-wedding-gold hover:text-white"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Volver
+                </motion.button>
+              </motion.div>
+            </motion.div>
+          )}
+        </motion.div>
+      </section>
+
+      {/* Accommodation Section */}
+      <section className="section-padding">
+        <div className="container-custom">
+          <motion.h2 
+            className="text-4xl md:text-5xl font-amsterdam text-wedding-burgundy text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            ALOJAMIENTO
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-wedding-charcoal/80 text-center mb-12 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Te sugerimos alojamientos posibles para los días de nuestra boda! Hacé clic en cada uno para ver mas info
+          </motion.p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {['Hotel xx', 'Hotel yy', 'Hotel zz', 'Hotel aa'].map((hotel, index) => (
+              <motion.div
+                key={hotel}
+                className="rounded-2xl bg-white/70 backdrop-blur border border-white/40 p-6 text-center"
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 100 }}
+                whileHover={{ scale: 1.05, y: -5, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
+              >
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ type: "spring", stiffness: 200, delay: index * 0.1 + 0.2 }}
+                >
+                  <WeddingIcon name="Calendar" size="lg" type="svg" className="text-wedding-gold mx-auto mb-4" animated />
+                </motion.div>
+                <h3 className="text-lg font-amsterdam text-wedding-burgundy">{hotel}</h3>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <footer className="bg-wedding-charcoal text-white py-12">
-        <div className="container-custom text-center">
-          <p className="text-wedding-gold font-alex text-2xl mb-2">@waistenprogramacion</p>
-          <p className="text-sm text-white/60">Waisten Programacion ® Invitaciones digitales Web Todos los derechos reservados.</p>
-        </div>
-      </footer>
+      <motion.footer 
+        className="bg-wedding-charcoal text-white py-12"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <motion.div 
+          className="container-custom text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <motion.p 
+            className="text-wedding-gold font-alex text-2xl mb-4"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            ¡Gracias!
+          </motion.p>
+          <p className="text-wedding-gold/80">@waistenprogramacion</p>
+          <p className="text-sm text-white/60 mt-4">Waisten Programacion ® Invitaciones digitales Web Todos los derechos reservados.</p>
+        </motion.div>
+      </motion.footer>
     </main>
   )
 }
