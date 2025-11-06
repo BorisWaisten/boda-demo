@@ -34,6 +34,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# large video files (too big for GitHub)
-public/boda/*.mp4
