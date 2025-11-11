@@ -626,33 +626,6 @@ export default function ModernDemo() {
         </div>
       </section>
 
-      <motion.footer 
-        className="bg-wedding-charcoal text-white py-12"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <motion.div 
-          className="container-custom text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <motion.p 
-            className="text-wedding-gold font-alex text-2xl mb-4"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            ¡Gracias!
-          </motion.p>
-          <p className="text-wedding-gold/80">@waistenprogramacion</p>
-          <p className="text-sm text-white/60 mt-4">Waisten Programacion ® Invitaciones digitales Web Todos los derechos reservados.</p>
-        </motion.div>
-      </motion.footer>
     </main>
   )
 }

@@ -266,13 +266,6 @@ export default function DemoPage({ params }: { params: { slug: string } }) {
         </div>
       </section>
 
-      <footer className="bg-wedding-charcoal text-white py-12">
-        <div className="container-custom text-center">
-          <p className="text-wedding-gold font-alex text-2xl mb-4">¡Gracias!</p>
-          <p className="text-wedding-gold/80">@waistenprogramacion</p>
-          <p className="text-sm text-white/60 mt-4">Waisten Programacion ® Invitaciones digitales Web Todos los derechos reservados.</p>
-        </div>
-      </footer>
     </main>
   )
 }

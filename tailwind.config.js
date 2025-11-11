@@ -17,6 +17,10 @@ module.exports = {
         'wedding-sage': 'rgb(var(--wedding-sage) / <alpha-value>)',
         'wedding-ivory': 'rgb(var(--wedding-ivory) / <alpha-value>)',
         'wedding-charcoal': 'rgb(var(--wedding-charcoal) / <alpha-value>)',
+        // Waisten Programación colors
+        'waisten-sky': '#7DD3FC', // Medium sky blue
+        'waisten-teal': '#0F766E', // Dark teal
+        'waisten-light': '#E0F2FE', // Light pastel sky blue
       },
       fontFamily: {
         'andasia': ['Andasia', 'cursive'],
@@ -27,6 +31,8 @@ module.exports = {
         'classical-romance': ['Classical Romance', 'cursive'],
         'garamond': ['EB Garamond', 'serif'],
         'breathine': ['Breathine Demo', 'cursive'],
+        'anton': ['Anton', 'sans-serif'],
+        'playfair': ['Playfair Display', 'serif'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
