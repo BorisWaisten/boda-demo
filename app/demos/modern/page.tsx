@@ -275,10 +275,10 @@ export default function ModernDemo() {
                 viewport={{ once: true }}
                 transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
               >
-                <WeddingIcon name="Church" size="lg" type="svg" className="text-white" animated />
+                <WeddingIcon name="Church" size="lg" type="svg" animated />
               </motion.div>
               <motion.h2 
-                className="text-4xl md:text-5xl font-amsterdam text-wedding-burgundy mb-6"
+                className="text-4xl md:text-8xl font-amsterdam text-wedding-burgundy mb-6"
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -324,7 +324,7 @@ export default function ModernDemo() {
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <WeddingIcon name="Church" size="xl" type="svg" className="text-wedding-gold mx-auto mb-4" animated />
-                <h3 className="text-2xl font-amsterdam text-wedding-burgundy mb-3">Bendición Matrimonial</h3>
+                <h3 className="md:text-5xl text-2xl font-amsterdam text-wedding-burgundy mb-3">Bendición Matrimonial</h3>
                 <div className="w-16 h-0.5 bg-wedding-gold mx-auto mb-4" />
                 <p className="text-wedding-charcoal/70">Unidos en el amor y la fe, comenzamos esta nueva etapa de nuestras vidas</p>
               </motion.div>
@@ -352,7 +352,7 @@ export default function ModernDemo() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <WeddingIcon name="WeddingCake" size="xl" type="svg" className="text-wedding-gold mx-auto mb-4" animated />
-                <h3 className="text-2xl font-amsterdam text-wedding-burgundy mb-3">Fiesta de Celebración</h3>
+                <h3 className="md:text-5xl text-2xl font-amsterdam text-wedding-burgundy mb-3">Fiesta de Celebración</h3>
                 <div className="w-16 h-0.5 bg-wedding-gold mx-auto mb-4" />
                 <p className="text-wedding-charcoal/70">Después de la ceremonia, los esperamos para celebrar con música, baile y mucha alegría</p>
               </motion.div>
@@ -373,7 +373,7 @@ export default function ModernDemo() {
                 <WeddingIcon name="Music" size="lg" type="svg" className="text-white" animated />
               </motion.div>
               <motion.h2 
-                className="text-4xl md:text-5xl font-amsterdam text-wedding-burgundy mb-6"
+                className="text-5xl md:text-8xl font-amsterdam text-wedding-burgundy mb-6"
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -391,7 +391,7 @@ export default function ModernDemo() {
                 <p className="font-semibold">Lugar</p>
                 <p>Direccion</p>
                 <p>Ciudad, Provincia</p>
-                <p className="text-wedding-burgundy font-bold text-xl font-alex">18:00 HS</p>
+                <p className="text-wedding-burgundy font-bold text-2xl md:text-3xl font-alex">18:00 HS</p>
               </motion.div>
               <motion.button 
                 className="btn-primary mt-8"
@@ -424,7 +424,7 @@ export default function ModernDemo() {
             <WeddingIcon name="Music" size="xl" type="svg" className="text-wedding-gold mx-auto mb-6" animated />
           </motion.div>
           <motion.h2 
-            className="text-4xl md:text-5xl font-amsterdam text-wedding-burgundy mb-6"
+            className="text-5xl md:text-8xl font-amsterdam text-wedding-burgundy mb-6"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -459,7 +459,7 @@ export default function ModernDemo() {
       <section className="section-padding">
         <div className="container-custom">
           <motion.h2 
-            className="text-4xl md:text-5xl font-amsterdam text-wedding-burgundy text-center mb-16"
+            className="text-5xl md:text-8xl font-amsterdam text-wedding-burgundy text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -490,9 +490,9 @@ export default function ModernDemo() {
                 >
                   <WeddingIcon name={item.icon as any} size="xl" type="svg" className="text-wedding-gold mx-auto mb-6" animated />
                 </motion.div>
-                <h3 className="text-2xl font-amsterdam text-wedding-burgundy mb-2">{item.title}</h3>
+                <h3 className="text-4xl md:text-5xl font-amsterdam text-wedding-burgundy mb-2">{item.title}</h3>
                 <div className="w-16 h-0.5 bg-wedding-gold mx-auto mb-4" />
-                <p className={item.description ? "text-wedding-charcoal mb-3" : "text-3xl font-alex text-wedding-burgundy"}>{item.content}</p>
+                <p className={item.description ? "text-wedding-charcoal mb-3" : "text-3xl md:text-4xl font-alex text-wedding-burgundy"}>{item.content}</p>
                 {item.description && <p className="text-sm text-wedding-charcoal/70">{item.description}</p>}
               </motion.div>
             ))}
@@ -507,7 +507,7 @@ export default function ModernDemo() {
           {...useReveal(30, 0)}
         >
           <motion.h2 
-            className="text-4xl md:text-5xl font-amsterdam mb-8"
+            className="text-5xl md:text-8xl font-amsterdam mb-8"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -583,7 +583,7 @@ export default function ModernDemo() {
       <section className="section-padding">
         <div className="container-custom">
           <motion.h2 
-            className="text-4xl md:text-5xl font-amsterdam text-wedding-burgundy text-center mb-16"
+            className="text-5xl md:text-8xl font-amsterdam text-wedding-burgundy text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

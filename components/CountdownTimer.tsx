@@ -48,7 +48,7 @@ export default function CountdownTimer() {
   ]
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+    <div className="grid grid-cols-4 gap-4 mx-4 md:gap-8">
       {timeUnits.map((unit, index) => (
         <div
           key={unit.label}
@@ -56,10 +56,10 @@ export default function CountdownTimer() {
           style={{ animationDelay: `${index * 0.1}s` }}
         >
           <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 md:p-6 shadow-lg border border-wedding-gold/20">
-            <div className="text-3xl md:text-4xl font-bold text-wedding-burgundy font-alex">
+            <div className="text-xl sm:text-3xl md:text-4xl font-bold text-wedding-burgundy font-alex">
               {unit.value.toString().padStart(2, '0')}
             </div>
-            <div className="text-sm md:text-base text-wedding-charcoal/70 font-medium mt-2">
+            <div className="text-xs sm:text-sm md:text-base text-wedding-charcoal/70 font-medium mt-2">
               {unit.label}
             </div>
           </div>

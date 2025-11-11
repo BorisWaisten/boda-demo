@@ -3,20 +3,19 @@ import './globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://invitacion-boda.vercel.app'),
-  title: 'Invitación de Boda - Kati & Fede',
-  description: 'Te invitamos a celebrar nuestra boda el 1 de noviembre de 2025',
+  title: 'Invitación de Boda ',
+  description: 'Te invitamos a celebrar nuestra boda',
   keywords: 'boda, invitación, matrimonio, celebración',
-  authors: [{ name: 'Kati & Fede' }],
   openGraph: {
-    title: 'Invitación de Boda - Kati & Fede',
-    description: 'Te invitamos a celebrar nuestra boda el 1 de noviembre de 2025',
+    title: 'Invitación de Boda ',
+    description: 'Te invitamos a celebrar nuestra boda',
     type: 'website',
     images: ['/16_14424.webp'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Invitación de Boda - Kati & Fede',
-    description: 'Te invitamos a celebrar nuestra boda el 1 de noviembre de 2025',
+    title: 'Invitación de Boda',
+    description: 'Te invitamos a celebrar nuestra boda',
     images: ['/16_14424.webp'],
   },
 }

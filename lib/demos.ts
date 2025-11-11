@@ -44,6 +44,23 @@ export const DEMOS: Record<string, DemoConfig> = {
       { src: '/boda/boda8.jpeg', alt: 'Momentos de boda', width: 200, height: 150 },
     ],
   },
+  'demo3': {
+    slug: 'demo3',
+    themeClass: undefined, // usa el tema por defecto (rose/burgundy) con estilo barroco
+    coupleNames: 'Isabella y Alejandro',
+    dateLabel: '15 DE JUNIO 2026',
+    heroImage: '/16_14424.webp',
+    ceremonyBg: '/16_14430.webp',
+    partyBg: '/16_14458.webp',
+    gallery: [
+      { src: '/boda/boda1.avif', alt: 'Momentos de boda', width: 200, height: 150 },
+      { src: '/boda/boda2.avif', alt: 'Ceremonia', width: 200, height: 150 },
+      { src: '/boda/boda3.avif', alt: 'Fiesta', width: 200, height: 150 },
+      { src: '/boda/boda4.avif', alt: 'Celebración', width: 200, height: 150 },
+      { src: '/boda/boda5.avif', alt: 'Momentos especiales', width: 200, height: 150 },
+      { src: '/boda/boda6.avif', alt: 'Boda', width: 200, height: 150 },
+    ],
+  },
 }
 
 

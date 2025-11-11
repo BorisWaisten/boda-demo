@@ -35,6 +35,47 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Classical Romance';
+  src: url('/classical-romance/ClassicalRomance-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/garamond-similar/EB_Garamond/static/EBGaramond-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/garamond-similar/EB_Garamond/static/EBGaramond-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/garamond-similar/EB_Garamond/static/EBGaramond-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Breathine Demo';
+  src: url('/breathinedemo-k7rxw.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 /* Animaciones de dibujo progresivo para WeddingRingsSet1 */
 @keyframes drawRing1 {
   0% { 
@@ -197,6 +238,11 @@
   }
   .hero-bottom-gradient {
     background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 35%, transparent 70%);
+  }
+  
+  /* Baroque/Romantic effects */
+  .sepia {
+    filter: sepia(20%) contrast(1.1) brightness(0.95);
   }
 }
 

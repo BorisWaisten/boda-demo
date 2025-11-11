@@ -10,6 +10,13 @@ export { default as Camera } from './Camera'
 export { default as Calendar } from './Calendar'
 export { default as Fireworks } from './Fireworks'
 
+// Baroque/Romantic decorative SVG components
+export { default as BaroqueOrnament } from './BaroqueOrnament'
+export { default as BaroqueFrame } from './BaroqueFrame'
+export { default as BaroqueGarland } from './BaroqueGarland'
+export { default as BaroqueBorder } from './BaroqueBorder'
+export { default as BaroqueScroll } from './BaroqueScroll'
+
 // Re-export types
 export type { default as FlowersProps } from './Flowers'
 export type { default as ChurchProps } from './Church'

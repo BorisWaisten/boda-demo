@@ -24,6 +24,9 @@ module.exports = {
         'alex': ['Alex Brush', 'cursive'],
         'amsterdam': ['Amsterdam', 'cursive'],
         'cormorant': ['Cormorant Garamond', 'serif'],
+        'classical-romance': ['Classical Romance', 'cursive'],
+        'garamond': ['EB Garamond', 'serif'],
+        'breathine': ['Breathine Demo', 'cursive'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
