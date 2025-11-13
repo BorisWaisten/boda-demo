@@ -50,7 +50,7 @@ export default function Footer() {
       </div>
 
       <div className="container-custom relative z-10">
-        <div className="grid md:grid-cols-3 gap-8 md:gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 max-w-lg mx-auto items-center">
           {/* Logo */}
           <motion.div
             className="flex justify-center md:justify-start"
@@ -59,36 +59,16 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="relative w-32 h-32 md:w-40 md:h-40">
+            <div className="relative w-32 h-32 md:w-[5rem] md:h-[5rem]">
               <Image
                 src="/logo1.png"
                 alt="Waisten Programación"
                 fill
-                className="object-contain"
+                className="object-contain scale-[2] md:scale-[3.5]"
                 priority
               />
             </div>
           </motion.div>
-
-          {/* Información de contacto */}
-          <motion.div
-            className="text-center md:text-left"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h3 className="font-anton text-2xl md:text-3xl mb-4" style={{ color: '#7DD3FC' }}>
-              WAISTEN PROGRAMACIÓN
-            </h3>
-            <p className="font-playfair italic text-sm md:text-base text-gray-300 mb-2">
-              Estudio de desarrollo de software
-            </p>
-            <p className="font-playfair italic text-xs md:text-sm text-gray-400">
-              Invitaciones digitales Web
-            </p>
-          </motion.div>
-
           {/* Redes sociales */}
           <motion.div
             className="flex flex-col items-center md:items-end gap-4"
@@ -138,32 +118,6 @@ export default function Footer() {
             </div>
           </motion.div>
         </div>
-
-        {/* Línea divisoria y copyright */}
-        <motion.div
-          className="mt-8 md:mt-12 pt-8 border-t border-white/10"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="font-playfair text-xs md:text-sm text-gray-400 text-center md:text-left">
-              © 2025 Waisten Programación. Todos los derechos reservados.
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="font-playfair text-xs text-gray-400">Desarrollado con</span>
-              <motion.span
-                className="text-red-500 text-xl"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1 }}
-              >
-                ❤️
-              </motion.span>
-              <span className="font-playfair text-xs text-gray-400">por Waisten Programación</span>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </footer>
   )
