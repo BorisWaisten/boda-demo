@@ -66,7 +66,7 @@ export default function ModernDemo() {
       {/* Hero más minimalista */}
       <section className="relative min-h-screen overflow-hidden">
         {/* Video de fondo */}
-        <div className="absolute inset-0 opacity-80">
+        <div className="hidden md:block absolute inset-0 opacity-80">
           <video
             autoPlay
             loop
@@ -75,6 +75,18 @@ export default function ModernDemo() {
             className="w-full h-full object-cover"
           >
             <source src="/boda/video-boda2.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/20"></div>
+        </div>
+        <div className="block md:hidden absolute inset-0 opacity-80">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/boda/video-boda3.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/20"></div>
         </div>
@@ -278,7 +290,7 @@ export default function ModernDemo() {
                 <WeddingIcon name="Church" size="lg" type="svg" animated />
               </motion.div>
               <motion.h2 
-                className="text-4xl md:text-8xl font-amsterdam text-wedding-burgundy mb-6"
+                className="text-8xl md:text-8xl font-amsterdam text-wedding-burgundy mb-6"
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -323,8 +335,8 @@ export default function ModernDemo() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <WeddingIcon name="Church" size="xl" type="svg" className="text-wedding-gold mx-auto mb-4" animated />
-                <h3 className="md:text-5xl text-2xl font-amsterdam text-wedding-burgundy mb-3">Bendición Matrimonial</h3>
+                <img src="/SVG-Barrocos/Couple 4.svg" alt="Church" className="w-24 h-24 mx-auto mb-4" />
+                <h3 className="md:text-5xl text-6xl font-amsterdam text-wedding-burgundy mb-3">Bendición Matrimonial</h3>
                 <div className="w-16 h-0.5 bg-wedding-gold mx-auto mb-4" />
                 <p className="text-wedding-charcoal/70">Unidos en el amor y la fe, comenzamos esta nueva etapa de nuestras vidas</p>
               </motion.div>
@@ -352,28 +364,28 @@ export default function ModernDemo() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <WeddingIcon name="WeddingCake" size="xl" type="svg" className="text-wedding-gold mx-auto mb-4" animated />
-                <h3 className="md:text-5xl text-2xl font-amsterdam text-wedding-burgundy mb-3">Fiesta de Celebración</h3>
+                <h3 className="md:text-5xl text-6xl font-amsterdam text-wedding-burgundy mb-3">Fiesta de Celebración</h3>
                 <div className="w-16 h-0.5 bg-wedding-gold mx-auto mb-4" />
                 <p className="text-wedding-charcoal/70">Después de la ceremonia, los esperamos para celebrar con música, baile y mucha alegría</p>
               </motion.div>
             </motion.div>
             <motion.div 
-              className="text-center md:text-left order-1 md:order-2"
+              className="text-center flex flex-col items-center justify-center order-1 md:order-2"
               {...useReveal(30, 0.2)}
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <motion.div 
-                className="inline-flex items-center justify-center w-16 h-16 bg-wedding-burgundy rounded-full mb-6"
+              <motion.div
                 initial={{ scale: 0, rotate: 180 }}
                 whileInView={{ scale: 1, rotate: 0 }}
                 viewport={{ once: true }}
                 transition={{ type: "spring", stiffness: 200, delay: 0.3 }}
+                className="mb-6"
               >
-                <WeddingIcon name="Music" size="lg" type="svg" className="text-white" animated />
+                <WeddingIcon name="Disco Ball" size="xl" type="svg" className="text-white" animated />
               </motion.div>
               <motion.h2 
-                className="text-5xl md:text-8xl font-amsterdam text-wedding-burgundy mb-6"
+                className="text-8xl md:text-8xl font-amsterdam text-wedding-burgundy mb-6"
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -415,16 +427,17 @@ export default function ModernDemo() {
           className="container-custom text-center"
           {...useReveal(30, 0)}
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-          >
-            <WeddingIcon name="Music" size="xl" type="svg" className="text-wedding-gold mx-auto mb-6" animated />
-          </motion.div>
+          <motion.div 
+                className="inline-flex items-center justify-center w-20 h-20 bg-wedding-gold rounded-full mb-6"
+                initial={{ scale: 0, rotate: -180 }}
+                whileInView={{ scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+              >
+            <WeddingIcon name="Music" size="xl" type="svg" className="text-wedding-gold mx-auto " animated />
+              </motion.div>
           <motion.h2 
-            className="text-5xl md:text-8xl font-amsterdam text-wedding-burgundy mb-6"
+            className="text-6xl md:text-8xl font-amsterdam text-wedding-burgundy mb-6"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -459,7 +472,7 @@ export default function ModernDemo() {
       <section className="section-padding">
         <div className="container-custom">
           <motion.h2 
-            className="text-5xl md:text-8xl font-amsterdam text-wedding-burgundy text-center mb-16"
+            className="text-6xl md:text-8xl font-amsterdam text-wedding-burgundy text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -469,9 +482,9 @@ export default function ModernDemo() {
           </motion.h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: 'WeddingRingsSet1', title: 'Dress Code', content: 'Elegante', description: null },
-              { icon: 'WeddingGifts', title: 'Regalo', content: '¡El mejor regalo es tu presencia!', description: 'Si deseas realizarnos un regalo, te brindamos nuestros datos bancarios' },
-              { icon: 'Balloons', title: 'Niños', content: 'Este es un festejo destinado solo a adultos', description: null }
+              { icon: 'groom-suit', title: 'Dress Code', content: 'Elegante', description: null, isImage: true },
+              { icon: 'WeddingGifts', title: 'Regalo', content: '¡El mejor regalo es tu presencia!', description: 'Si deseas realizarnos un regalo, te brindamos nuestros datos bancarios', isImage: false },
+              { icon: 'Balloons', title: 'Niños', content: 'Este es un festejo destinado solo a adultos', description: null, isImage: false }
             ].map((item, index) => (
               <motion.div
                 key={item.title}
@@ -487,12 +500,17 @@ export default function ModernDemo() {
                   whileInView={{ scale: 1, rotate: 0 }}
                   viewport={{ once: true }}
                   transition={{ type: "spring", stiffness: 200, delay: index * 0.2 + 0.3 }}
+                  className="mb-6"
                 >
-                  <WeddingIcon name={item.icon as any} size="xl" type="svg" className="text-wedding-gold mx-auto mb-6" animated />
+                  {item.isImage ? (
+                    <img src="/SVG-Barrocos/Groom Suit 2.svg" alt={item.title} className="w-24 h-24 mx-auto" />
+                  ) : (
+                    <WeddingIcon name={item.icon as any} size="xl" type="svg" className="text-wedding-gold mx-auto" animated />
+                  )}
                 </motion.div>
-                <h3 className="text-4xl md:text-5xl font-amsterdam text-wedding-burgundy mb-2">{item.title}</h3>
+                <h3 className="text-6xl md:text-5xl font-amsterdam text-wedding-burgundy mb-2">{item.title}</h3>
                 <div className="w-16 h-0.5 bg-wedding-gold mx-auto mb-4" />
-                <p className={item.description ? "text-wedding-charcoal mb-3" : "text-3xl md:text-4xl font-alex text-wedding-burgundy"}>{item.content}</p>
+                <p className={item.description ? "text-wedding-charcoal mb-3" : "text-xl  font-alex text-wedding-burgundy"}>{item.content}</p>
                 {item.description && <p className="text-sm text-wedding-charcoal/70">{item.description}</p>}
               </motion.div>
             ))}
@@ -507,7 +525,7 @@ export default function ModernDemo() {
           {...useReveal(30, 0)}
         >
           <motion.h2 
-            className="text-5xl md:text-8xl font-amsterdam mb-8"
+            className="text-8xl md:text-8xl font-amsterdam mb-8"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -583,7 +601,7 @@ export default function ModernDemo() {
       <section className="section-padding">
         <div className="container-custom">
           <motion.h2 
-            className="text-5xl md:text-8xl font-amsterdam text-wedding-burgundy text-center mb-16"
+            className="text-6xl md:text-6xl font-amsterdam text-wedding-burgundy text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

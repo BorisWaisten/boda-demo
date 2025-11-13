@@ -5,9 +5,10 @@ interface BackgroundImageProps {
   alt: string
   className?: string
   priority?: boolean
+  objectPosition?: string
 }
 
-export default function BackgroundImage({ src, alt, className = '', priority = false }: BackgroundImageProps) {
+export default function BackgroundImage({ src, alt, className = '', priority = false, objectPosition }: BackgroundImageProps) {
   return (
     <div className={`absolute inset-0 ${className}`}>
       <Image
@@ -15,6 +16,7 @@ export default function BackgroundImage({ src, alt, className = '', priority = f
         alt={alt}
         fill
         className="object-cover"
+        style={objectPosition ? { objectPosition } : undefined}
         priority={priority}
         quality={90}
       />

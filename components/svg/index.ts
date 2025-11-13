@@ -9,6 +9,7 @@ export { default as WeddingGifts } from './WeddingGifts'
 export { default as Camera } from './Camera'
 export { default as Calendar } from './Calendar'
 export { default as Fireworks } from './Fireworks'
+export { default as DiscoBall } from './DiscoBall'
 
 // Baroque/Romantic decorative SVG components
 export { default as BaroqueOrnament } from './BaroqueOrnament'

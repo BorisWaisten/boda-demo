@@ -10,7 +10,8 @@ import {
   WeddingGifts,
   Camera,
   Calendar,
-  Fireworks
+  Fireworks,
+  DiscoBall
 } from './svg'
 
 interface WeddingIconProps {
@@ -90,6 +91,8 @@ export default function WeddingIcon({
           return <Calendar {...svgProps} />
         case 'Fireworks':
           return <Fireworks {...svgProps} />
+        case 'Disco Ball':
+          return <DiscoBall {...svgProps} />
         case 'WeddingRingsSet2':
         case 'WeddingRingsSet3':
         case 'instagram':

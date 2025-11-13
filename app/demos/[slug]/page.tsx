@@ -84,7 +84,13 @@ export default function DemoPage({ params }: { params: { slug: string } }) {
     <main className={`min-h-screen bg-gradient-to-br from-wedding-cream via-wedding-rose to-wedding-ivory ${config.themeClass ?? ''}`}>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-end justify-center overflow-hidden">
-        <BackgroundImage src={config.heroImage} alt="Wedding background" className="opacity-90 grayscale" priority />
+        <BackgroundImage 
+          src={config.heroImage} 
+          alt="Wedding background" 
+          className="opacity-90 grayscale " 
+          priority 
+          objectPosition={config.heroImage === '/16_14424.webp' ? '80% ' : undefined}
+        />
         <div className="absolute inset-x-0 bottom-0 h-1/2 hero-bottom-gradient" />
         <div className="absolute inset-0 opacity-10" style={{ opacity: Math.max(0, 0.1 - scrollProgress * 0.1) }}>
           <div className="absolute top-20 left-20 animate-float">
@@ -102,9 +108,9 @@ export default function DemoPage({ params }: { params: { slug: string } }) {
         </div>
 
         <div className="container-custom z-10 w-full">
-          <div className="w-full flex flex-col items-center justify-end pb-16 md:pb-24 absolute inset-x-0 bottom-0" style={heroStyles}>
-            <h1 className="text-6xl md:text-8xl font-alex text-white hero-title mb-2">{config.coupleNames}</h1>
-            <div className="text-white/80 font-catchy tracking-wide">{config.dateLabel.replace('1 DE NOVIEMBRE 2025', '01 • 11 • 2025')}</div>
+          <div className="w-full flex flex-col items-center justify-center md:justify-end pb-8 md:pb-24 absolute inset-x-0 top-1/2 md:bottom-0" style={heroStyles}>
+            <h1 className="text-5xl sm:text-6xl md:text-8xl font-alex text-white hero-title mb-2 text-center px-4">{config.coupleNames}</h1>
+            <div className="text-white/80 font-catchy tracking-wide text-center px-4">{config.dateLabel.replace('1 DE NOVIEMBRE 2025', '01 • 11 • 2025')}</div>
           </div>
           <div className="w-full flex flex-col items-center justify-end pb-10 md:pb-14 absolute inset-x-0 bottom-0" style={infoStyles}>
             <p className="text-lg md:text-2xl text-white/90 font-catchy mb-3">Te invitamos a celebrar nuestra boda</p>
@@ -118,10 +124,9 @@ export default function DemoPage({ params }: { params: { slug: string } }) {
 
       {/* Ceremony Section */}
       <section className="section-padding bg-white/50 relative">
-        <BackgroundImage src={config.ceremonyBg} alt="Church background" className="opacity-20" />
         <div className="container-custom relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-center md:text-left" {...useReveal(24)}>
+            <div className="text-center " {...useReveal(24)}>
               <div className="inline-flex items-center justify-center w-16 h-16 bg-wedding-gold rounded-full mb-6">
                 <WeddingIcon name="Church" size="lg" type="svg" className="text-white" animated />
               </div>
@@ -136,7 +141,7 @@ export default function DemoPage({ params }: { params: { slug: string } }) {
             </div>
             <div className="relative" {...useReveal(24, 120)}>
               <div className="p-8 text-center feature-plain">
-                <WeddingIcon name="Church" size="xl" type="svg" className="text-wedding-gold mx-auto mb-4" animated />
+                <img src="/SVG-Barrocos/Couple 4.svg" alt="Church" className="w-24 h-24 mx-auto mb-4" />
                 <h3 className="text-2xl font-catchy text-wedding-burgundy mb-3">Bendición Matrimonial</h3>
                 <div className="soft-divider mb-4" />
                 <p className="text-wedding-charcoal/70">Unidos en el amor y la fe, comenzamos esta nueva etapa de nuestras vidas</p>
@@ -148,7 +153,6 @@ export default function DemoPage({ params }: { params: { slug: string } }) {
 
       {/* Party Section */}
       <section className="section-padding relative">
-        <BackgroundImage src={config.partyBg} alt="Party background" className="opacity-20" />
         <div className="container-custom">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative order-2 md:order-1" {...useReveal(24)}>
@@ -159,10 +163,8 @@ export default function DemoPage({ params }: { params: { slug: string } }) {
                 <p className="text-wedding-charcoal/70">Después de la ceremonia, los esperamos para celebrar con música, baile y mucha alegría</p>
               </div>
             </div>
-            <div className="text-center md:text-left order-1 md:order-2" {...useReveal(24, 120)}>
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-wedding-burgundy rounded-full mb-6">
-                <WeddingIcon name="Music" size="lg" type="svg" className="text-white" animated />
-              </div>
+            <div className="text-center flex flex-col items-center justify-center " {...useReveal(24, 120)}>
+              <WeddingIcon name="Disco Ball" size="lg" type="svg" className="text-white mb-6 " animated />
               <h2 className="text-4xl md:text-5xl font-catchy text-wedding-burgundy mb-6">Fiesta</h2>
               <div className="space-y-4 text-lg text-wedding-charcoal">
                 <p className="font-semibold">Lugar</p>
@@ -175,17 +177,6 @@ export default function DemoPage({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </section>
-
-      {/* Music Request Section */}
-      <section className="section-padding bg-wedding-rose/30">
-        <div className="container-custom text-center" {...useReveal(24)}>
-          <WeddingIcon name="Music" size="xl" type="svg" className="text-wedding-gold mx-auto mb-6" animated />
-          <h2 className="text-4xl md:text-5xl font-catchy text-wedding-burgundy mb-6">¡Que no falte tu tema favorito!</h2>
-          <p className="text-xl text-wedding-charcoal/80 mb-8 max-w-2xl mx-auto">Ayudanos a armar la lista de canciones para nuestra fiesta</p>
-          <button className="btn-secondary">Sugerí tu tema acá</button>
-        </div>
-      </section>
-
       {/* Gallery 3D Section */}
       <section className="section-padding bg-gradient-to-br from-wedding-cream to-wedding-ivory">
         <div className="container-custom relative z-10">
@@ -197,14 +188,24 @@ export default function DemoPage({ params }: { params: { slug: string } }) {
           <Gallery3D images={config.gallery} />
         </div>
       </section>
-
+    {/* Music Request Section */}
+    <section className="section-padding bg-wedding-rose/30">
+            <div className="container-custom text-center" {...useReveal(24)}>
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-wedding-burgundy rounded-full mb-6">
+                <WeddingIcon name="Music" size="lg" type="svg" className="text-white" animated />
+              </div>
+               <h2 className="text-4xl md:text-5xl font-catchy text-wedding-burgundy mb-6">¡Que no falte tu tema favorito!</h2>
+              <p className="text-xl text-wedding-charcoal/80 mb-8 max-w-2xl mx-auto">Ayudanos a armar la lista de canciones para nuestra fiesta</p>
+              <button className="btn-secondary">Sugerí tu tema acá</button>
+            </div>
+          </section>
       {/* Details Section */}
       <section className="section-padding">
         <div className="container-custom">
           <h2 className="text-4xl md:text-5xl font-catchy text-wedding-burgundy text-center mb-16">Acá te contamos todos los detalles…</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="p-8 text-center group" {...useReveal(24)}>
-              <WeddingIcon name="WeddingRingsSet1" size="xl" type="svg" className="text-wedding-gold mx-auto mb-6" animated />
+              <img src="/SVG-Barrocos/Groom Suit 2.svg" alt="Church" className="w-24 h-24 mx-auto mb-4" />
               <h3 className="text-2xl font-catchy text-wedding-burgundy mb-2">Dress Code</h3>
               <div className="soft-divider mb-4" />
               <p className="text-3xl font-alex text-wedding-burgundy">Elegante</p>

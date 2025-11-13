@@ -34,7 +34,7 @@ export default function Music({
       <path 
         d="m57.674,104.092c.928,5.001-4.433,10.189-11.952,11.583-7.519,1.395-14.365-1.529-15.293-6.53s4.415-10.185,11.934-11.58,14.383,1.526,15.311,6.526Z" 
         fill="none" 
-        stroke={color} 
+        stroke='#ffffff' 
         strokeMiterlimit="10" 
         strokeWidth="2"
         style={animated ? {
@@ -46,7 +46,7 @@ export default function Music({
       <path 
         d="m100.664,96.118c.928,5.001-4.77,10.251-12.289,11.646s-14.365-1.529-15.293-6.53,4.415-10.185,11.934-11.58c7.519-1.395,14.72,1.463,15.648,6.464Z" 
         fill="none" 
-        stroke={color} 
+        stroke='#ffffff' 
         strokeMiterlimit="10" 
         strokeWidth="2"
         style={animated ? {
@@ -59,7 +59,7 @@ export default function Music({
       <polyline 
         points="57.674 104.092 49.418 59.483 92.745 51.447 100.664 96.118" 
         fill="none" 
-        stroke={color} 
+        stroke='#ffffff' 
         strokeMiterlimit="10" 
         strokeWidth="2"
         style={animated ? {
@@ -78,7 +78,7 @@ export default function Music({
           ry="7.972" 
           transform="translate(-14.692 9.067) rotate(-16.887)" 
           fill="none" 
-          stroke={color} 
+          stroke='#ffffff' 
           strokeMiterlimit="10" 
           strokeWidth="2"
           style={animated ? {
@@ -89,7 +89,7 @@ export default function Music({
         <path 
           d="m32.974,51.605l-11.356-35.101,11.86,2.608c3.534.777,6.64,2.868,8.689,5.85l4.052,5.896-4.072-3.418c-3.833-3.218-8.834-4.691-13.8-4.066l-4.37.55" 
           fill="none" 
-          stroke={color} 
+          stroke='#ffffff' 
           strokeLinecap="round" 
           strokeLinejoin="round" 
           strokeWidth="2"
@@ -108,8 +108,8 @@ export default function Music({
           rx="5.256" 
           ry="7.097" 
           transform="translate(29.564 106.715) rotate(-71.551)" 
-          fill={color} 
-          stroke={color} 
+          fill='none' 
+          stroke='#ffffff' 
           strokeMiterlimit="10" 
           strokeWidth="2"
           style={animated ? {
@@ -119,8 +119,8 @@ export default function Music({
         />
         <path 
           d="m95.642,34.553l7.795-23.041,5.251,6.044c1.564,1.801,2.386,4.129,2.297,6.513l-.174,4.713-.811-3.41c-.763-3.21-2.83-5.957-5.704-7.579l-2.529-1.427" 
-          fill={color} 
-          stroke={color} 
+          fill='none' 
+          stroke='#ffffff' 
           strokeLinecap="round" 
           strokeLinejoin="round" 
           strokeWidth="2"
@@ -135,7 +135,7 @@ export default function Music({
       <polygon 
         points="49.418 59.483 52.24 76.338 95.566 68.302 92.745 51.447 49.418 59.483" 
         fill="none" 
-        stroke={color} 
+        stroke='#ffffff' 
         strokeMiterlimit="10" 
         strokeWidth="2"
         style={animated ? {
@@ -151,7 +151,7 @@ export default function Music({
           <path
             d="M30 70 Q50 60 70 70 Q90 80 110 70"
             fill="none"
-            stroke={color}
+            stroke='#ffffff' 
             strokeWidth="1"
             opacity="0.3"
             style={{
@@ -165,7 +165,7 @@ export default function Music({
           <path
             d="M25 75 Q45 65 65 75 Q85 85 105 75"
             fill="none"
-            stroke={color}
+            stroke='#ffffff' 
             strokeWidth="1"
             opacity="0.2"
             style={{
@@ -179,7 +179,7 @@ export default function Music({
           <path
             d="M20 80 Q40 70 60 80 Q80 90 100 80"
             fill="none"
-            stroke={color}
+            stroke='#ffffff' 
             strokeWidth="1"
             opacity="0.1"
             style={{
