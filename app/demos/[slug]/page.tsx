@@ -259,7 +259,6 @@ export default function DemoPage({ params }: { params: { slug: string } }) {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {['Hotel xx', 'Hotel yy', 'Hotel zz', 'Hotel aa'].map((hotel, index) => (
               <div key={hotel} className="feature-plain p-6 text-center hover:bg-white/20 transition-colors duration-300" {...useReveal(24, index * 100)}>
-                <WeddingIcon name="Calendar" size="lg" type="svg" className="text-wedding-gold mx-auto mb-4" animated />
                 <h3 className="text-lg font-catchy text-wedding-burgundy">{hotel}</h3>
               </div>
             ))}

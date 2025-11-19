@@ -928,7 +928,6 @@ export default function BaroqueDemo() {
                     viewport={{ once: true }}
                     transition={{ type: "spring", stiffness: 200, delay: index * 0.1 + 0.2 }}
                   >
-                    <BaroqueSVG name="Love letter" size="lg" color="#8B1538" className="mx-auto mb-4" animated />
                   </motion.div>
                   <h3 className="text-lg font-classical-romance text-wedding-burgundy">{hotel}</h3>
                 </div>

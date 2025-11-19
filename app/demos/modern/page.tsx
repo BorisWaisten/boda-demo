@@ -635,9 +635,8 @@ export default function ModernDemo() {
                   viewport={{ once: true }}
                   transition={{ type: "spring", stiffness: 200, delay: index * 0.1 + 0.2 }}
                 >
-                  <WeddingIcon name="Calendar" size="lg" type="svg" className="text-wedding-gold mx-auto mb-4" animated />
                 </motion.div>
-                <h3 className="text-lg font-amsterdam text-wedding-burgundy">{hotel}</h3>
+                <h3 className="text-xl md:text-2xl font-catchy text-wedding-burgundy">{hotel}</h3>
               </motion.div>
             ))}
           </div>
