@@ -1,12 +1,13 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import CountdownTimer from '../../../components/CountdownTimer'
 import BackgroundImage from '../../../components/BackgroundImage'
 import { DEMOS } from '../../../lib/demos'
 import Image from 'next/image'
 import BaroqueSVG from '../../../components/BaroqueSVG'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 export default function BaroqueDemo() {
   const config = DEMOS['demo3']
@@ -339,101 +340,84 @@ export default function BaroqueDemo() {
           </motion.div>
           
           <motion.div 
-            className="w-full pb-8 overflow-hidden"
+            className="w-full pb-8"
             {...useReveal(30, 0.2)}
           >
-            <div className="relative flex items-center justify-center h-[500px] md:h-[600px] lg:h-[800px]">
-              {/* Imagen anterior */}
-              <motion.div
-                key={`prev-${currentImageIndex}`}
-                initial={{ x: direction === 1 ? -200 : 0, opacity: direction === 1 ? 0 : 0.7, scale: direction === 1 ? 0.8 : 0.9 }}
-                animate={{ x: 0, opacity: 0.7, scale: 0.9 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute left-4 md:left-8 lg:left-16 cursor-pointer z-10 hover:scale-95 hover:opacity-80"
-                onClick={() => goToImage((currentImageIndex - 1 + config.gallery.length) % config.gallery.length)}
-              >
-                <div className="relative">
-                  <div className="rounded-2xl overflow-hidden shadow-2xl ring-2 ring-wedding-gold/50 border-2 border-white/70">
-                    <div className="relative w-40 h-56 md:w-48 md:h-72 lg:w-56 lg:h-80">
-                      <Image
-                        src={config.gallery[(currentImageIndex - 1 + config.gallery.length) % config.gallery.length].src}
-                        alt={config.gallery[(currentImageIndex - 1 + config.gallery.length) % config.gallery.length].alt}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-              
-              {/* Imagen activa */}
-              <motion.div
-                key={`active-${currentImageIndex}`}
-                initial={{ x: direction === 1 ? 200 : -200, opacity: 0, scale: 0.8 }}
-                animate={{ x: 0, opacity: 1, scale: 1 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="relative z-20"
-              >
-                <div className="relative">
-                  <div className="rounded-2xl overflow-hidden shadow-2xl ring-4 ring-wedding-gold border-4 border-white">
-                    <div className="relative w-48 h-64 md:w-60 md:h-80 lg:w-[19rem] lg:h-[28rem]">
+            <div className="relative max-w-6xl mx-auto">
+              <div className="flex items-center justify-center gap-4 md:gap-8">
+                <motion.button
+                  type="button"
+                  className="p-3 rounded-full bg-white shadow-lg border border-wedding-gold/40 text-wedding-burgundy hover:bg-wedding-gold/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-wedding-gold"
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => goToImage((currentImageIndex - 1 + config.gallery.length) % config.gallery.length)}
+                  aria-label="Imagen anterior"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </motion.button>
+
+                <div className="relative flex-1 max-w-4xl aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white ring-4 ring-wedding-gold/80 bg-white">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.div
+                      key={currentImageIndex}
+                      className="absolute inset-0"
+                      initial={{ opacity: 0, x: direction === 1 ? 80 : -80, scale: 0.96 }}
+                      animate={{ opacity: 1, x: 0, scale: 1 }}
+                      exit={{ opacity: 0, x: direction === 1 ? -80 : 80, scale: 0.98 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    >
                       <Image
                         src={config.gallery[currentImageIndex].src}
                         alt={config.gallery[currentImageIndex].alt}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 192px, (max-width: 1024px) 240px, 288px"
+                        sizes="(max-width: 768px) 90vw, (max-width: 1280px) 70vw, 960px"
+                        priority
                       />
-                    </div>
-                  </div>
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
-              </motion.div>
 
-              {/* Imagen siguiente */}
-              <motion.div
-                key={`next-${currentImageIndex}`}
-                initial={{ x: direction === -1 ? 200 : 0, opacity: direction === -1 ? 0 : 0.7, scale: direction === -1 ? 0.8 : 0.9 }}
-                animate={{ x: 0, opacity: 0.7, scale: 0.9 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute right-4 md:right-8 lg:right-16 cursor-pointer z-10 hover:scale-95 hover:opacity-80"
-                onClick={() => goToImage((currentImageIndex + 1) % config.gallery.length)}
+                <motion.button
+                  type="button"
+                  className="p-3 rounded-full bg-white shadow-lg border border-wedding-gold/40 text-wedding-burgundy hover:bg-wedding-gold/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-wedding-gold"
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => goToImage((currentImageIndex + 1) % config.gallery.length)}
+                  aria-label="Imagen siguiente"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </motion.button>
+              </div>
+
+              <motion.div 
+                className="flex flex-wrap items-center justify-center gap-4 mt-10"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <div className="relative">
-                  <div className="rounded-2xl overflow-hidden shadow-2xl ring-2 ring-wedding-gold/50 border-2 border-white/70">
-                    <div className="relative w-40 h-56 md:w-48 md:h-72 lg:w-56 lg:h-80">
-                      <Image
-                        src={config.gallery[(currentImageIndex + 1) % config.gallery.length].src}
-                        alt={config.gallery[(currentImageIndex + 1) % config.gallery.length].alt}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
-                      />
-                    </div>
-                  </div>
-                </div>
+                {config.gallery.map((image, index) => (
+                  <button
+                    key={image.src}
+                    onClick={() => goToImage(index)}
+                    className={`group relative w-20 h-16 md:w-24 md:h-20 rounded-xl overflow-hidden border-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-wedding-gold ${
+                      index === currentImageIndex
+                        ? 'border-wedding-gold shadow-lg shadow-wedding-gold/30'
+                        : 'border-transparent opacity-70 hover:opacity-100'
+                    }`}
+                    aria-label={`Abrir imagen ${index + 1}`}
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className={`object-cover transition duration-300 ${
+                        index === currentImageIndex ? 'grayscale-0 scale-100' : 'grayscale group-hover:grayscale-0 group-hover:scale-105'
+                      }`}
+                      sizes="96px"
+                    />
+                  </button>
+                ))}
               </motion.div>
             </div>
-          </motion.div>
-          
-          <motion.div 
-            className="flex justify-center gap-2 mt-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
-            {config.gallery.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToImage(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  index === currentImageIndex
-                    ? 'w-8 h-2 bg-wedding-gold'
-                    : 'w-2 h-2 bg-wedding-gold/40 hover:bg-wedding-gold/60'
-                }`}
-                aria-label={`Ir a imagen ${index + 1}`}
-              />
-            ))}
           </motion.div>
         </div>
       </section>
@@ -528,7 +512,7 @@ export default function BaroqueDemo() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl">
               {/* SOLO desktop */}
               <motion.div
-                className="hidden md:block absolute top-[-80px] left-[200px]"
+                className="hidden md:block absolute top-[-10px] left-[180px]"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -538,13 +522,13 @@ export default function BaroqueDemo() {
                   name="garden lights 1" 
                   size="md" 
                   color="#D4AF37" 
-                  className="w-[300px] h-auto opacity-60"
+                  className="w-[350px] h-auto opacity-60"
                   style={{ transform: 'rotate(0deg)' }}
                 />
               </motion.div>
 
               <motion.div
-                className="hidden md:block absolute top-[-80px] left-[-50px]"
+                className="hidden md:block absolute top-[-10px] left-[-150px]"
                 initial={{ opacity: 0, scale: 0, rotateY: 180 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -554,13 +538,13 @@ export default function BaroqueDemo() {
                   name="garden lights 1" 
                   size="md" 
                   color="#D4AF37" 
-                  className="w-[300px] h-auto opacity-60"
+                  className="w-[350px] h-auto opacity-60"
                   style={{ transform: 'rotate(0deg)' }}
                 />
               </motion.div>
 
               <motion.div
-                className="hidden md:block absolute top-[-80px] right-[200px]"
+                className="hidden md:block absolute top-[-10px] right-[180px]"
                 initial={{ opacity: 0, scale: 0, rotateY: 180 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -570,13 +554,13 @@ export default function BaroqueDemo() {
                   name="garden lights 1" 
                   size="md" 
                   color="#D4AF37" 
-                  className="w-[300px] h-auto opacity-60"
+                  className="w-[350px] h-auto opacity-60"
                   style={{ transform: 'rotate(0deg)' }}
                 />
               </motion.div>
 
               <motion.div
-                className="hidden md:block absolute top-[-80px] right-[-50px]"
+                className="hidden md:block absolute top-[-10px] right-[-150px]"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -586,14 +570,14 @@ export default function BaroqueDemo() {
                   name="garden lights 1" 
                   size="md" 
                   color="#D4AF37" 
-                  className="w-[300px] h-auto opacity-60"
+                  className="w-[350px] h-auto opacity-60"
                   style={{ transform: 'rotate(0deg)' }}
                 />
               </motion.div>
 
               {/* SOLO mobile */}
               <motion.div
-                className="block md:hidden absolute top-[-40px] left-0"
+                className="block md:hidden absolute left-[-10px]"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -609,7 +593,7 @@ export default function BaroqueDemo() {
               </motion.div>
 
               <motion.div
-                className="block md:hidden absolute top-[-20px] right-0"
+                className="block md:hidden absolute top-[-5px] right-[-5px]"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -619,15 +603,15 @@ export default function BaroqueDemo() {
                   name="garden lights 1" 
                   size="md" 
                   color="#D4AF37" 
-                  className="w-[250px] h-auto opacity-60"
-                  style={{ transform: 'rotate(15deg)' }}
+                  className="w-[230px] h-auto opacity-60"
+                  style={{ transform: 'rotate(5deg) rotateY(180deg)' }}
                 />
               </motion.div>
             </div>
             
             {/* Candelabro colgando del centro */}
             <motion.div
-              className="absolute top-[60px] md:top-[40px] left-1/2 -translate-x-1/2 z-20"
+              className="absolute top-[0px] md:top-[0px] md:left-0 md:right-0 md:w-full md:flex md:justify-center  -translate-x-1/2 z-20"
               initial={{ opacity: 0, y: -30, scale: 0.8 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
@@ -642,7 +626,7 @@ export default function BaroqueDemo() {
                 name="Chandelier 2" 
                 size="xl" 
                 color="#000" 
-                className="w-32 md:w-40 h-auto"
+                className="w-[60px] md:w-40 h-auto"
                 style={{ 
                   filter: 'drop-shadow(0 4px 12px rgba(212, 175, 55, 0.5))'
                 }}
@@ -673,7 +657,7 @@ export default function BaroqueDemo() {
               </motion.div>
             </motion.div>
             <motion.div 
-              className="text-center md:text-left order-1 md:order-2 relative"
+              className="text-center md:text-center order-1 md:order-2 relative"
               {...useReveal(30, 0.2)}
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300 }}
