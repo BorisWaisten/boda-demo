@@ -78,6 +78,38 @@
   font-display: swap;
 }
 
+/* Cumple 15 Sarah - Boochild & Poplar */
+@font-face {
+  font-family: 'Boochild';
+  src: url('/cumple15Sarah/boochild/Boochild.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poplar';
+  src: url('/cumple15Sarah/Poplar Regular/Poplar Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Selima';
+  src: url('/cumple15Sarah/selima/Selima%20.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Road Rage';
+  src: url('/cumple15Sarah/road_rage/Road_Rage.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* Animaciones de dibujo progresivo para WeddingRingsSet1 */
 @keyframes drawRing1 {

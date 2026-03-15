@@ -21,6 +21,9 @@ module.exports = {
         'waisten-sky': '#7DD3FC', // Medium sky blue
         'waisten-teal': '#0F766E', // Dark teal
         'waisten-light': '#E0F2FE', // Light pastel sky blue
+        // Cumple 15 Sarah
+        'cumple15-red': '#b7163c',
+        'cumple15-pink': '#f9d4d6',
       },
       fontFamily: {
         'andasia': ['Andasia', 'cursive'],
@@ -33,6 +36,11 @@ module.exports = {
         'breathine': ['Breathine Demo', 'cursive'],
         'anton': ['Anton', 'sans-serif'],
         'playfair': ['Playfair Display', 'serif'],
+        'boochild': ['Boochild', 'cursive'],
+        'poplar': ['Poplar', 'serif'],
+        'montserrat': ['Montserrat', 'sans-serif'],
+        'selima': ['Selima', 'sans-serif'],
+        'road-rage': ['Road Rage', 'sans-serif']
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
