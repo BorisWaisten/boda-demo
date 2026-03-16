@@ -54,17 +54,17 @@ export default function CountdownTimer({ targetDate = '2025-11-01T17:00:00', cla
 
   const isCumple15 = variant === 'cumple15'
   const boxClass = isCumple15
-    ? 'bg-white rounded-2xl p-4 md:p-6 shadow-sm border-2 border-cumple15-red'
-    : 'bg-white/90 backdrop-blur-sm rounded-xl p-4 md:p-6 shadow-lg border border-wedding-gold/20'
+    ? 'bg-white rounded-xl md:rounded-2xl p-2 sm:p-3 md:p-5 shadow-sm border-2 border-cumple15-red'
+    : 'bg-white/90 backdrop-blur-sm rounded-xl p-2 sm:p-3 md:p-6 shadow-lg border border-wedding-gold/20'
   const valueClass = isCumple15
-    ? 'text-xl sm:text-3xl md:text-4xl font-bold text-cumple15-red font-montserrat'
-    : 'text-xl sm:text-3xl md:text-4xl font-bold text-wedding-burgundy font-alex'
+    ? 'text-base sm:text-2xl md:text-3xl lg:text-4xl font-bold text-cumple15-red font-montserrat'
+    : 'text-base sm:text-2xl md:text-3xl lg:text-4xl font-bold text-wedding-burgundy font-alex'
   const labelClass = isCumple15
-    ? 'text-xs sm:text-sm md:text-base text-cumple15-red font-medium mt-2 font-montserrat'
-    : 'text-xs sm:text-sm md:text-base text-wedding-charcoal/70 font-medium mt-2'
+    ? 'text-[10px] sm:text-xs md:text-base text-cumple15-red font-medium mt-0.5 sm:mt-1 md:mt-2 font-montserrat'
+    : 'text-[10px] sm:text-xs md:text-base text-wedding-charcoal/70 font-medium mt-0.5 sm:mt-1 md:mt-2'
 
   return (
-    <div className={`grid grid-cols-3 gap-4 mx-4 md:gap-8 ${className ?? ''}`}>
+    <div className={`grid grid-cols-3 gap-1 sm:gap-2 md:gap-6 px-2 sm:px-3 md:px-4 max-w-2xl mx-auto w-[50%] ${className ?? ''}`}>
       {timeUnits.map((unit, index) => (
         <div
           key={unit.label}

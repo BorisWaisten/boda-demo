@@ -34,7 +34,7 @@ export default function Cumple15Demo() {
   const countdownReveal = useReveal(28, 0.45)
 
   return (
-    <main className="min-h-screen bg-cumple15-pink">
+    <main className="min-h-screen bg-cumple15-pink overflow-hidden">
       {/* Sección 1: SARAH — fondo tipo peluche, nombre en SVG */}
       <section
         className="relative w-full  flex items-center justify-center bg-cumple15-pink"
@@ -62,16 +62,16 @@ export default function Cumple15Demo() {
       >
       {/* Bola de boliche (disco) — izquierda, no bloquea clics */}
         <motion.div
-          className="absolute left-[-15%] bottom-[-50%] z-50 pointer-events-none"
+          className="absolute left-[-50%] top-[25%] z-50 pointer-events-none"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 0.9, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={BOLA_BOLICHE} alt="" className="w-full h-full object-contain object-left-bottom" />
+          <img src={BOLA_BOLICHE} alt="" className="w-[70%] object-contain object-left-bottom" />
         </motion.div>
         <motion.div
-          className="absolute left-[-34%] top-[-10%] w-full h-auto pointer-events-none"
+          className="absolute left-[-34%] top-[-10%] w-full scale-125 h-auto pointer-events-none"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.35 }}
@@ -79,7 +79,7 @@ export default function Cumple15Demo() {
           <img src={RULITOS} alt="" className="w-full h-auto object-contain" />
         </motion.div>
         <motion.div
-          className="absolute right-[-30%] bottom-16 md:bottom-8 w-[80%] h-auto pointer-events-none"
+          className="absolute right-[-30%] bottom-16 md:bottom-8 w-[90%] h-auto pointer-events-none"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
@@ -122,7 +122,7 @@ export default function Cumple15Demo() {
             className=""
           >
             {/* Fuente con cifras legibles: Boochild no renderiza bien el "1" */}
-            <p className="font-montserrat font-medium text-white text-2xl md:text-3xl tracking-wide">
+            <p className="font-montserrat font-medium text-white text-xl md:text-3xl tracking-wide">
               16/05/2026
             </p>
           </motion.div>
@@ -145,14 +145,14 @@ export default function Cumple15Demo() {
       {/* Sección 3: FIESTA — fondo blanco, brindis, datos del evento */}
       <section className="relative z-10 section-padding w-full bg-white py-16 md:py-20 ">
         <motion.div
-          className="absolute right-[-10%] top-[-40%] -translate-y-1/2 w-30 pointer-events-none"
+          className="absolute right-[-90%] top-[-30%] -translate-y-1/2  pointer-events-none"
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 0.8, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={OSITO} alt="" className="w-full -rotate-6 h-full object-contain" />
+          <img src={OSITO} alt="" className="w-[60%] -rotate-12 h-full object-contain" />
         </motion.div>
 
         <div className="container-custom text-center relative z-10">
@@ -220,13 +220,13 @@ export default function Cumple15Demo() {
       {/* Sección 4: BRESH — fondo rosa claro, imagen BRESH */}
       <section className="relative section-padding w-full max-h-[40vh] bg-cumple15-pink">
       <motion.div
-  className="absolute left-[-10%] top-[-60%] -translate-y-1/2 w-70 z-[200] pointer-events-none"
+  className="absolute left-[-20%] bottom-[0%] -translate-y-1/2 w-[80%] z-[200] pointer-events-none"
   initial={{ opacity: 0, x: -20 }}
   whileInView={{ opacity: 0.8, x: 0 }}
   viewport={{ once: true }}
   transition={{ duration: 0.5 }}
 >
-  <img src={OSITO} alt="" className="w-full scale-150 rotate-6 h-full" />
+  <img src={OSITO} alt="" className="w-full rotate-12 h-full" />
 </motion.div>
   
   <motion.div
@@ -253,18 +253,17 @@ export default function Cumple15Demo() {
         />
 
         <motion.div
-          className="absolute right-[-12%] top-[-15%] w-74 pointer-events-none"
+          className="absolute right-[-10%] top-[0%] w-48  pointer-events-none"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 0.9 }}
           viewport={{ once: true }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={BOLA_BOLICHE} alt="" className="w-full h-full object-contain object-left-top" />
+          <img src={BOLA_BOLICHE} alt="" className="w-full  object-contain object-left-top" />
         </motion.div>
 
         <div className="container-custom relative z-10 flex flex-col items-center justify-center min-h-[380px] text-center pt-12">
           <motion.div
-            className="mb-6"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
