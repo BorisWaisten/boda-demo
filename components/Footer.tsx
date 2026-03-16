@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { 
   Globe, 
@@ -10,6 +11,9 @@ import {
 } from 'lucide-react'
 
 export default function Footer() {
+  const pathname = usePathname()
+  const isCumple15 = pathname?.startsWith('/demos/cumple15')
+
   const socialLinks = [
     {
       name: 'Sitio Web',
@@ -17,6 +21,8 @@ export default function Footer() {
       icon: Globe,
       color: 'hover:text-sky-400',
       bgColor: 'hover:bg-sky-400/10',
+      cumpleColor: 'hover:text-cumple15-pink',
+      cumpleBg: 'hover:bg-cumple15-pink/20',
     },
     {
       name: 'Instagram',
@@ -24,6 +30,8 @@ export default function Footer() {
       icon: Instagram,
       color: 'hover:text-pink-500',
       bgColor: 'hover:bg-pink-500/10',
+      cumpleColor: 'hover:text-cumple15-pink',
+      cumpleBg: 'hover:bg-cumple15-pink/20',
     },
     {
       name: 'WhatsApp',
@@ -31,6 +39,8 @@ export default function Footer() {
       icon: MessageCircle,
       color: 'hover:text-green-500',
       bgColor: 'hover:bg-green-500/10',
+      cumpleColor: 'hover:text-cumple15-pink',
+      cumpleBg: 'hover:bg-cumple15-pink/20',
     },
     {
       name: 'Email',
@@ -38,8 +48,80 @@ export default function Footer() {
       icon: Mail,
       color: 'hover:text-blue-500',
       bgColor: 'hover:bg-blue-500/10',
+      cumpleColor: 'hover:text-cumple15-pink',
+      cumpleBg: 'hover:bg-cumple15-pink/20',
     },
   ]
+
+  if (isCumple15) {
+    return (
+      <footer className="bg-cumple15-red text-white py-10 md:py-14 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl bg-cumple15-pink" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full blur-3xl bg-cumple15-pink" />
+        </div>
+        <div className="container-custom relative z-10">
+          <div className="grid md:grid-cols-2 gap-8 max-w-lg mx-auto items-center">
+            <motion.div
+              className="flex justify-center md:justify-start"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative w-24 h-24 md:w-20 md:h-20">
+                <Image
+                  src="/logo1.png"
+                  alt="Waisten Programación"
+                  fill
+                  className="object-contain opacity-90 scale-[1.8] md:scale-[2.5]"
+                  priority
+                />
+              </div>
+            </motion.div>
+            <motion.div
+              className="flex flex-col items-center md:items-end gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <p className="font-boochild text-sm text-cumple15-pink/95 mb-2">Seguinos</p>
+              <div className="flex gap-3">
+                {socialLinks.map((social, index) => {
+                  const Icon = social.icon
+                  return (
+                    <motion.a
+                      key={social.name}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`
+                        w-11 h-11 rounded-full
+                        bg-cumple15-pink/10 border border-cumple15-pink/30
+                        flex items-center justify-center text-cumple15-pink
+                        transition-all duration-300 backdrop-blur-sm
+                        ${social.cumpleColor} ${social.cumpleBg}
+                      `}
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.5 + index * 0.1, type: 'spring', stiffness: 200 }}
+                      aria-label={social.name}
+                    >
+                      <Icon className="w-5 h-5" />
+                    </motion.a>
+                  )
+                })}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </footer>
+    )
+  }
 
   return (
     <footer className="bg-black text-white py-12 md:py-16 relative overflow-hidden">

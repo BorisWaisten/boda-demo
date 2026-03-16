@@ -87,24 +87,22 @@ export default function Cumple15Demo() {
           <img src={RULITOS} alt="" className="w-full h-auto object-contain" />
         </motion.div>
         <div className="container-custom text-center relative z-10 space-y-0">
-          <motion.div
+          <motion.h2
             ref={title1Reveal.ref}
             initial={title1Reveal.initial}
             animate={title1Reveal.animate}
             transition={title1Reveal.transition}
-            className=""
+            className=" font-boochild text-white text-3xl sm:text-3xl md:text-4xl tracking-wide"
           >
-            <h2 className="font-boochild text-white text-3xl sm:text-3xl md:text-4xl tracking-wide">
               ¡CELEBREMOS!
-            </h2>
-          </motion.div>
+          </motion.h2>
 
           <motion.div
             ref={title2Reveal.ref}
             initial={title2Reveal.initial}
             animate={title2Reveal.animate}
             transition={title2Reveal.transition}
-            className="w-full max-w-xl mx-auto"
+            className="w-full h-[20vh] max-w-xl mx-auto"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -176,7 +174,7 @@ export default function Cumple15Demo() {
             FIESTA
           </motion.h2>
           <motion.p
-            className="text-cumple15-pink font-medium text-lg md:text-xl mb-1"
+            className="text-cumple15-red font-medium text-lg md:text-xl mb-1"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -194,7 +192,7 @@ export default function Cumple15Demo() {
             SALÓN DE EVENTOS UFC
           </motion.p>
           <motion.p
-            className="text-cumple15-pink text-base md:text-lg mb-8"
+            className="text-cumple15-red text-base md:text-lg mb-8"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
