@@ -50,13 +50,13 @@ export default function Cumple15Demo() {
       <section ref={section2Ref} className="relative w-full flex flex-col items-center justify-center bg-cumple15-red py-10 md:py-14">
         {/* Elementos flotantes de esta sección */}
         <img src={BOLA_BOLICHE} className="absolute  left-[-48%] top-[20%] z-50 pointer-events-none w-full " alt="" />
-        <img src={RULITOS} className="absolute left-[-34%] top-[-10%] w-full scale-125 pointer-events-none" alt="" />
-        <img src={RULITOS} className="absolute right-[-38%] bottom-[-10%] w-full  pointer-events-none" alt="" />
+        <img src={RULITOS} className="absolute left-[-38%] top-[-18%] w-full pointer-events-none" alt="" />
+        <img src={RULITOS} className="absolute right-[-22%] bottom-[10%] w-[70%]  pointer-events-none" alt="" />
         
         <div className="container-custom text-center relative z-10">
-          <motion.h2 {...title1Reveal} className="absolute right-[30%] font-boochild text-white text-3xl sm:text-3xl md:text-4xl">¡CELEBREMOS!</motion.h2>
-          <motion.div {...title2Reveal} className="w-full h-[17vh] max-w-xl mx-auto">
-            <img src="/cumple15Sarah/mis15.svg" alt="Mis 15" className="w-full pointer-events-none scale-150" />
+          <motion.h2 {...title1Reveal} className="absolute right-[29%] font-boochild text-white text-4xl sm:text-3xl md:text-4xl">¡CELEBREMOS!</motion.h2>
+          <motion.div {...title2Reveal} className="w-full h-[17vh] mx-auto">
+            <img src="/cumple15Sarah/mis15.svg" alt="Mis 15" className="w-full mx-auto pointer-events-none scale-150" />
           </motion.div>
           <motion.div {...dateReveal}>
             <p className="font-montserrat font-bold mt-6 mb-2 text-white text-xl md:text-3xl">16/05/2026</p>
