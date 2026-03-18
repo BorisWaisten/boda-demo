@@ -111,6 +111,17 @@
   font-display: swap;
 }
 
+/* Catalish Huntera */
+@font-face {
+  font-family: 'Catalish Huntera';
+  src: url('/cumple15Sarah/catalish_huntera/Catalish Huntera.woff2') format('woff2'),
+       url('/cumple15Sarah/catalish_huntera/Catalish Huntera.woff') format('woff'),
+       url('/cumple15Sarah/catalish_huntera/Catalish Huntera.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Animaciones de dibujo progresivo para WeddingRingsSet1 */
 @keyframes drawRing1 {
   0% { 

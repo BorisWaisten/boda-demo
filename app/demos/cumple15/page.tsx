@@ -11,6 +11,7 @@ const BRINDIS = '/cumple15Sarah/brindis.svg'
 const CARTA_ASISTENCIA = '/cumple15Sarah/carta asistecia.svg'
 const BRESH_IMG = '/cumple15Sarah/BRESH.png'
 const RULITOS = '/cumple15Sarah/rulitos.svg'
+const fondo = '/cumple15Sarah/fondo lunares.svg'
 const SECTION_1_HEIGHT = '70vh'
 
 export default function Cumple15Demo() {
@@ -62,7 +63,7 @@ export default function Cumple15Demo() {
       >
       {/* Bola de boliche (disco) — izquierda, no bloquea clics */}
         <motion.div
-          className="absolute left-[-50%] top-[25%] z-50 pointer-events-none"
+          className="absolute left-[-50%] top-[5%] z-50 pointer-events-none"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 0.9, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
@@ -92,7 +93,7 @@ export default function Cumple15Demo() {
             initial={title1Reveal.initial}
             animate={title1Reveal.animate}
             transition={title1Reveal.transition}
-            className=" font-boochild text-white text-3xl sm:text-3xl md:text-4xl tracking-wide"
+            className="absolute right-[30%] font-boochild  text-white text-3xl sm:text-3xl md:text-4xl tracking-wide"
           >
               ¡CELEBREMOS!
           </motion.h2>
@@ -102,7 +103,7 @@ export default function Cumple15Demo() {
             initial={title2Reveal.initial}
             animate={title2Reveal.animate}
             transition={title2Reveal.transition}
-            className="w-full h-[20vh] max-w-xl mx-auto"
+            className="w-full h-[17vh]  max-w-xl mx-auto"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -120,7 +121,7 @@ export default function Cumple15Demo() {
             className=""
           >
             {/* Fuente con cifras legibles: Boochild no renderiza bien el "1" */}
-            <p className="font-montserrat font-medium text-white text-xl md:text-3xl tracking-wide">
+            <p className="font-montserrat font-bold mb-2 text-white text-xl md:text-3xl tracking-wide">
               16/05/2026
             </p>
           </motion.div>
@@ -141,9 +142,9 @@ export default function Cumple15Demo() {
       </section>
 
       {/* Sección 3: FIESTA — fondo blanco, brindis, datos del evento */}
-      <section className="relative z-10 section-padding w-full bg-white py-16 md:py-20 ">
+      <section className="relative  z-10 section-padding w-full  py-16 md:py-20 ">
         <motion.div
-          className="absolute right-[-90%] top-[-30%] -translate-y-1/2  pointer-events-none"
+          className="absolute right-[-90%] top-[-40%] -translate-y-1/2  pointer-events-none"
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 0.8, x: 0 }}
           viewport={{ once: true }}
@@ -155,7 +156,7 @@ export default function Cumple15Demo() {
 
         <div className="container-custom text-center relative z-10">
           <motion.div
-            className="inline-flex items-center justify-center w-[8rem] h-[8rem] rounded-full bg-cumple15-pink mb-6"
+            className="inline-flex items-center justify-center w-[8rem] h-[8rem] rounded-full bg-white mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -174,7 +175,7 @@ export default function Cumple15Demo() {
             FIESTA
           </motion.h2>
           <motion.p
-            className="text-cumple15-red font-medium text-lg md:text-xl mb-1"
+            className="text-cumple15-red font-century font-bold text-lg md:text-xl mb-3"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -183,16 +184,16 @@ export default function Cumple15Demo() {
             SÁBADO 16 DE MAYO | 21:30 HS
           </motion.p>
           <motion.p
-            className="font-boochild text-cumple15-red text-xl md:text-2xl mb-2"
+            className="font-catalish text-cumple15-red text-xl md:text-2xl mb-3"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.25 }}
           >
-            SALÓN DE EVENTOS UFC
+            Salón de eventos UFC
           </motion.p>
           <motion.p
-            className="text-cumple15-red text-base md:text-lg mb-8"
+            className="text-cumple15-red font-century font-bold text-base md:text-lg mb-8"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -204,13 +205,13 @@ export default function Cumple15Demo() {
             href="https://maps.google.com/?q=Avenida+Coronel+Roca+3490+Villa+Soldati"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-8 py-3 rounded-2xl bg-cumple15-red text-white font-road-rage text-lg uppercase border-2 border-white shadow-md hover:bg-cumple15-red/90 transition-colors"
+            className="inline-block px-2  rounded-2xl bg-cumple15-red text-white font-catalish text-lg  hover:bg-cumple15-red/90 transition-colors"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            CÓMO LLEGAR
+            Cómo Llegar
           </motion.a>
         </div>
       </section>
@@ -218,17 +219,26 @@ export default function Cumple15Demo() {
       {/* Sección 4: BRESH — fondo rosa claro, imagen BRESH */}
       <section className="relative section-padding w-full max-h-[40vh] bg-cumple15-pink">
       <motion.div
-  className="absolute left-[-20%] bottom-[0%] -translate-y-1/2 w-[80%] z-[200] pointer-events-none"
-  initial={{ opacity: 0, x: -20 }}
-  whileInView={{ opacity: 0.8, x: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.5 }}
->
-  <img src={OSITO} alt="" className="w-full rotate-12 h-full" />
-</motion.div>
+        className="absolute left-[-26%] bottom-[15%] -translate-y-1/2 w-[80%] z-[200] pointer-events-none"
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 0.8, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <img src={OSITO} alt="" className="w-full rotate-12 h-full" />
+      </motion.div>
+      <motion.div
+          className="absolute right-[-95%] bottom-[-10%] z-50  pointer-events-none"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 0.9, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={BOLA_BOLICHE} alt="" className="w-[70%] object-contain object-left-bottom" />
+        </motion.div>
   
   <motion.div
-    className="relative w-full h-[50vh]"
+    className="relative w-full h-[20vh]"
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
@@ -237,41 +247,90 @@ export default function Cumple15Demo() {
     <img
       src={BRESH_IMG}
       alt="Bresh"
-      className="absolute top-[10rem] left-1/2 w-full max-w-xl -translate-x-1/2 -translate-y-1/2 object-contain"
+      className="absolute top-[10rem] scale-125 left-1/2 w-full max-w-xl -translate-x-1/2 -translate-y-1/2 object-contain"
     />
   </motion.div>
 </section>
-      {/* Sección 5: RSVP — gradiente rosa claro arriba, magenta abajo (~2/3) */}
-      <section className="relative section-padding w-full min-h-[420px] ">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'linear-gradient(to bottom, #f9d4d6 0%, #f9d4d6 28%, #b7163c 28%, #b7163c 100%)',
-          }}
-        />
 
+      {/* Sección 5: MÚSICA — Tema que no puede faltar */}
+      <section className="section-padding w-full bg-cumple15-pink">
+        <div className="container-custom text-center">
+          <motion.div
+            className="mx-auto mb-6 flex items-center justify-center w-16 h-16 rounded-full text-cumple15-red"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="text-2xl">♪</span>
+          </motion.div>
+          <motion.h2
+            className="font-poplar text-cumple15-red text-3xl md:text-4xl mb-2"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            MÚSICA
+          </motion.h2>
+          <motion.p
+            className="font-century font-bold text-cumple15-red text-base md:text-lg mb-6"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Tema que no puede faltar
+          </motion.p>
+          <motion.button
+            type="button"
+            className="inline-block px-2 rounded-2xl bg-cumple15-red text-white font-catalish text-lg   hover:bg-cumple15-pink transition-colors cursor-pointer"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            Sugerir Canción
+          </motion.button>
+        </div>
+      </section>
+
+      {/* Sección 6: Valor de la Tarjeta */}
+      <section className="relative section-padding w-full bg-cumple15-red">
+        <div className="container-custom text-center">
+          <p className="text-cumple15-red rounded-2xl bg-cumple15-pink w-[67%] mx-auto font-catalish text-lg md:text-xl">
+            Valor de la tarjeta: $68.000
+          </p>
+        </div>
         <motion.div
-          className="absolute right-[-10%] top-[0%] w-48  pointer-events-none"
+          className="absolute left-[-10%] bottom-[12%] w-52  pointer-events-none"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 0.9 }}
           viewport={{ once: true }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={BOLA_BOLICHE} alt="" className="w-full  object-contain object-left-top" />
+          <img src={BOLA_BOLICHE} alt="" className="w-full object-contain object-left-top" />
         </motion.div>
+      </section>
 
-        <div className="container-custom relative z-10 flex flex-col items-center justify-center min-h-[380px] text-center pt-12">
+      {/* Sección 7: RSVP — gradiente rosa claro arriba, magenta abajo (~2/3) */}
+      <section className="relative section-padding bg-cumple15-red w-full ">
+        <div
+          className="absolute inset-0 pointer-events-none"
+        />
+        <div className="container-custom relative z-10 flex flex-col items-center justify-center  text-center ">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            className='absolute right-0 top-[-18rem] h-[10vh]'
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={CARTA_ASISTENCIA} alt="" className="w-[100px] scale-[2.5] mx-auto object-contain" />
+            <img src={CARTA_ASISTENCIA} alt="" className="w-[400px] pointer-events-none z-0  mx-auto object-contain" />
           </motion.div>
           <motion.p
-            className="text-white font-montserrat md:text-lg mb-2"
+            className="text-white font-century font-bold italic md:text-lg mt-10 mb-2"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -280,7 +339,7 @@ export default function Cumple15Demo() {
             Confirmación de asistencia hasta el 30/4
           </motion.p>
           <motion.p
-            className="text-white/95 font-montserrat italic mb-8"
+            className="text-white/95 text-xs font-century italic mb-8"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -292,13 +351,13 @@ export default function Cumple15Demo() {
             href="https://forms.gle/8wUJRq7bamxvnNUNA"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-8 py-3 rounded-2xl bg-white text-cumple15-red font-road-rage text-sm uppercase border-2 border-cumple15-red shadow-md hover:bg-cumple15-pink transition-colors cursor-pointer"
+            className="inline-block px-2 rounded-2xl bg-cumple15-pink text-cumple15-red font-catalish text-lg  hover:bg-cumple15-pink transition-colors cursor-pointer"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            CONFIRMAR ASISTENCIA
+            Confirmar Asistencia
           </motion.a>
         </div>
       </section>

@@ -22,7 +22,7 @@ module.exports = {
         'waisten-teal': '#0F766E', // Dark teal
         'waisten-light': '#E0F2FE', // Light pastel sky blue
         // Cumple 15 Sarah
-        'cumple15-red': '#b7163c',
+        'cumple15-red': '#d21a6f',
         'cumple15-pink': '#f9d4d6',
       },
       fontFamily: {
@@ -40,7 +40,9 @@ module.exports = {
         'poplar': ['Poplar', 'serif'],
         'montserrat': ['Montserrat', 'sans-serif'],
         'selima': ['Selima', 'sans-serif'],
-        'road-rage': ['Road Rage', 'sans-serif']
+        'road-rage': ['Road Rage', 'sans-serif'],
+        'catalish': ['Catalish Huntera', 'cursive'],
+        'century': ['Century Gothic', 'system-ui', 'sans-serif'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
