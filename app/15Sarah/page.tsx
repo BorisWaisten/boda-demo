@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import CountdownTimer from '../../../components/CountdownTimer'
+import CountdownTimer from '../../components/CountdownTimer'
 
 const SARAH_SVG = '/cumple15Sarah/sarah.svg'
 const BOLA_BOLICHE = '/cumple15Sarah/bola de boliche.svg'
