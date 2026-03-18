@@ -6,12 +6,14 @@ import CountdownTimer from '../../../components/CountdownTimer'
 
 const SARAH_SVG = '/cumple15Sarah/sarah.svg'
 const BOLA_BOLICHE = '/cumple15Sarah/bola de boliche.svg'
+const BOLAROSA = '/cumple15Sarah/bolaRosa.svg'
+const MUSICAL = '/cumple15Sarah/notaMusical.svg'
 const OSITO = '/cumple15Sarah/osito.svg'
 const BRINDIS = '/cumple15Sarah/brindis.svg'
 const CARTA_ASISTENCIA = '/cumple15Sarah/carta asistecia.svg'
 const BRESH_IMG = '/cumple15Sarah/BRESH.png'
 const RULITOS = '/cumple15Sarah/rulitos.svg'
-const fondo = '/cumple15Sarah/fondo lunares.svg'
+const fondo = '/cumple15Sarah/fondo.svg'
 const SECTION_1_HEIGHT = '70vh'
 
 export default function Cumple15Demo() {
@@ -35,331 +37,110 @@ export default function Cumple15Demo() {
   const countdownReveal = useReveal(28, 0.45)
 
   return (
-    <main className="min-h-screen bg-cumple15-pink overflow-hidden">
-      {/* Sección 1: SARAH — fondo tipo peluche, nombre en SVG */}
-      <section
-        className="relative w-full  flex items-center justify-center bg-cumple15-pink"
-        style={{ height: '25vh' }}
-      >
-        <motion.div
-          className="w-full h-full flex items-center justify-center"
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={SARAH_SVG}
-            alt="Sarah"
-            className="w-full scale-110 object-fill object-center block"
-          />
+    <main className="min-h-screen bg-cumple15-pink overflow-x-hidden"> {/* El overflow va aquí */}
+      
+      {/* SECCIÓN 1: SARAH */}
+      <section className="relative w-full flex items-center justify-center bg-cumple15-pink" style={{ height: '25vh' }}>
+        <motion.div className="w-full h-full flex items-center justify-center" initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9 }}>
+          <img src={SARAH_SVG} alt="Sarah" className="w-full scale-110 object-fill" />
         </motion.div>
       </section>
 
-      {/* Sección 2: ¡CELEBREMOS! · MIS 15 · fecha · contador — fondo #b7163c */}
-      <section
-        ref={section2Ref}
-        className="relative section-padding w-full flex flex-col items-center justify-center bg-cumple15-red py-10 md:py-14 "
-      >
-      {/* Bola de boliche (disco) — izquierda, no bloquea clics */}
-        <motion.div
-          className="absolute left-[-50%] top-[5%] z-50 pointer-events-none"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 0.9, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={BOLA_BOLICHE} alt="" className="w-[70%] object-contain object-left-bottom" />
-        </motion.div>
-        <motion.div
-          className="absolute left-[-34%] top-[-10%] w-full scale-125 h-auto pointer-events-none"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.35 }}
-        >
-          <img src={RULITOS} alt="" className="w-full h-auto object-contain" />
-        </motion.div>
-        <motion.div
-          className="absolute right-[-30%] bottom-16 md:bottom-8 w-[90%] h-auto pointer-events-none"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <img src={RULITOS} alt="" className="w-full h-auto object-contain" />
-        </motion.div>
-        <div className="container-custom text-center relative z-10 space-y-0">
-          <motion.h2
-            ref={title1Reveal.ref}
-            initial={title1Reveal.initial}
-            animate={title1Reveal.animate}
-            transition={title1Reveal.transition}
-            className="absolute right-[30%] font-boochild  text-white text-3xl sm:text-3xl md:text-4xl tracking-wide"
-          >
-              ¡CELEBREMOS!
-          </motion.h2>
-
-          <motion.div
-            ref={title2Reveal.ref}
-            initial={title2Reveal.initial}
-            animate={title2Reveal.animate}
-            transition={title2Reveal.transition}
-            className="w-full h-[17vh]  max-w-xl mx-auto"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/cumple15Sarah/mis15.svg"
-              alt="Mis 15"
-              className="w-full scale-150 block"
-            />
+      {/* SECCIÓN 2: CELEBREMOS */}
+      <section ref={section2Ref} className="relative w-full flex flex-col items-center justify-center bg-cumple15-red py-10 md:py-14">
+        {/* Elementos flotantes de esta sección */}
+        <img src={BOLA_BOLICHE} className="absolute  left-[-48%] top-[20%] z-50 pointer-events-none w-full " alt="" />
+        <img src={RULITOS} className="absolute left-[-34%] top-[-10%] w-full scale-125 pointer-events-none" alt="" />
+        <img src={RULITOS} className="absolute right-[-38%] bottom-[-10%] w-full  pointer-events-none" alt="" />
+        
+        <div className="container-custom text-center relative z-10">
+          <motion.h2 {...title1Reveal} className="absolute right-[30%] font-boochild text-white text-3xl sm:text-3xl md:text-4xl">¡CELEBREMOS!</motion.h2>
+          <motion.div {...title2Reveal} className="w-full h-[17vh] max-w-xl mx-auto">
+            <img src="/cumple15Sarah/mis15.svg" alt="Mis 15" className="w-full pointer-events-none scale-150" />
           </motion.div>
-
-          <motion.div
-            ref={dateReveal.ref}
-            initial={dateReveal.initial}
-            animate={dateReveal.animate}
-            transition={dateReveal.transition}
-            className=""
-          >
-            {/* Fuente con cifras legibles: Boochild no renderiza bien el "1" */}
-            <p className="font-montserrat font-bold mb-2 text-white text-xl md:text-3xl tracking-wide">
-              16/05/2026
-            </p>
+          <motion.div {...dateReveal}>
+            <p className="font-montserrat font-bold mt-6 mb-2 text-white text-xl md:text-3xl">16/05/2026</p>
           </motion.div>
-
-          <motion.div
-            ref={countdownReveal.ref}
-            initial={countdownReveal.initial}
-            animate={countdownReveal.animate}
-            transition={countdownReveal.transition}
-            className="max-w-2xl mx-auto"
-          >
-            <CountdownTimer
-              targetDate="2026-05-16T21:30:00"
-              variant="cumple15"
-            />
+          <motion.div {...countdownReveal} className="max-w-2xl mx-auto">
+            <CountdownTimer targetDate="2026-05-16T21:30:00" variant="cumple15" />
           </motion.div>
         </div>
       </section>
 
-      {/* Sección 3: FIESTA — fondo blanco, brindis, datos del evento */}
-      <section className="relative  z-10 section-padding w-full  py-16 md:py-20 ">
-        <motion.div
-          className="absolute right-[-90%] top-[-40%] -translate-y-1/2  pointer-events-none"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 0.8, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={OSITO} alt="" className="w-[60%] -rotate-12 h-full object-contain" />
+      {/* SECCIÓN 3: FIESTA */}
+      <section className="relative z-10 w-full py-16">
+        <div className="absolute inset-0 z-0 opacity-30 pointer-events-none" style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover' }} />
+        
+        {/* Osito flotando - Quitamos el corte de sección */}
+        <motion.div className="absolute right-[-10%] top-[-25%] pointer-events-none z-20" initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 0.8, x: 0 }} viewport={{ once: true }}>
+          <img src={OSITO} alt="" className="w-48 scale-[1.5] pointer-events-none -rotate-12 object-contain" />
         </motion.div>
 
         <div className="container-custom text-center relative z-10">
-          <motion.div
-            className="inline-flex items-center justify-center w-[8rem] h-[8rem] rounded-full bg-white mb-6"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={BRINDIS} alt="" className="w-full scale-[2] object-contain" />
-          </motion.div>
-          <motion.h2
-            className="font-poplar text-cumple15-red text-3xl md:text-4xl mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            FIESTA
-          </motion.h2>
-          <motion.p
-            className="text-cumple15-red font-century font-bold text-lg md:text-xl mb-3"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            SÁBADO 16 DE MAYO | 21:30 HS
-          </motion.p>
-          <motion.p
-            className="font-catalish text-cumple15-red text-xl md:text-2xl mb-3"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-          >
-            Salón de eventos UFC
-          </motion.p>
-          <motion.p
-            className="text-cumple15-red font-century font-bold text-base md:text-lg mb-8"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            Avenida Coronel Roca 3490, Villa Soldati
-          </motion.p>
-          <motion.a
-            href="https://maps.google.com/?q=Avenida+Coronel+Roca+3490+Villa+Soldati"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-2  rounded-2xl bg-cumple15-red text-white font-catalish text-lg  hover:bg-cumple15-red/90 transition-colors"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            Cómo Llegar
-          </motion.a>
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white mb-6 shadow-md">
+            <img src={BRINDIS} alt="" className="w-full scale-[3] object-contain pointer-events-none" />
+          </div>
+          <h2 className="font-poplar text-cumple15-red text-4xl mb-4">FIESTA</h2>
+          <div className="space-y-2 mb-8">
+            <p className="text-cumple15-red font-century font-bold text-lg md:text-xl">SÁBADO 16 DE MAYO | 21:30 HS</p>
+            <p className="font-catalish text-cumple15-red text-[1.55rem]">Salón de eventos UFC</p>
+            <p className="text-cumple15-red font-century font-bold text-xs px-4">RP91, BELGRANO MANUEL BLVD, TOTORAS, SANTA FÉ</p>
+          </div>
+          <a href="https://maps.app.goo.gl/vRDFsurHjvA3wxWNA" className="inline-block px-1 rounded-full bg-cumple15-red text-white font-catalish text-xl shadow-lg">Cómo Llegar</a>
         </div>
       </section>
 
-      {/* Sección 4: BRESH — fondo rosa claro, imagen BRESH */}
-      <section className="relative section-padding w-full max-h-[40vh] bg-cumple15-pink">
-      <motion.div
-        className="absolute left-[-26%] bottom-[15%] -translate-y-1/2 w-[80%] z-[200] pointer-events-none"
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 0.8, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        <img src={OSITO} alt="" className="w-full rotate-12 h-full" />
-      </motion.div>
-      <motion.div
-          className="absolute right-[-95%] bottom-[-10%] z-50  pointer-events-none"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 0.9, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={BOLA_BOLICHE} alt="" className="w-[70%] object-contain object-left-bottom" />
-        </motion.div>
-  
-  <motion.div
-    className="relative w-full h-[20vh]"
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-  >
-    <img
-      src={BRESH_IMG}
-      alt="Bresh"
-      className="absolute top-[10rem] scale-125 left-1/2 w-full max-w-xl -translate-x-1/2 -translate-y-1/2 object-contain"
-    />
-  </motion.div>
-</section>
+      {/* SECCIÓN 4: BRESH (Corregida) */}
+      <section className="relative z-10   w-full">
+        <div className="absolute  -inset-[16px] z-0 opacity-20" style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover' }} />
+        
+        {/* Osito y Bola Rosa rodeando el logo */}
+        <img src={OSITO} alt="" className="absolute pointer-events-none left-[-8%] top-[-7rem] scale-[1.8] w-40 rotate-12 opacity-90 z-20" />
+        
+          <img src={BRESH_IMG} alt="Bresh" className="w-full max-w-md object-contain pointer-events-none" />
+ 
 
-      {/* Sección 5: MÚSICA — Tema que no puede faltar */}
-      <section className="section-padding w-full bg-cumple15-pink">
-        <div className="container-custom text-center">
-          <motion.div
-            className="mx-auto mb-6 flex items-center justify-center w-16 h-16 rounded-full text-cumple15-red"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="text-2xl">♪</span>
-          </motion.div>
-          <motion.h2
-            className="font-poplar text-cumple15-red text-3xl md:text-4xl mb-2"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            MÚSICA
-          </motion.h2>
-          <motion.p
-            className="font-century font-bold text-cumple15-red text-base md:text-lg mb-6"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Tema que no puede faltar
-          </motion.p>
-          <motion.button
-            type="button"
-            className="inline-block px-2 rounded-2xl bg-cumple15-red text-white font-catalish text-lg   hover:bg-cumple15-pink transition-colors cursor-pointer"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            Sugerir Canción
-          </motion.button>
+        <img src={BOLAROSA} alt="" className="absolute right-[-30%] bottom-[40%] scale-[1.5] w-64 z-20 pointer-events-none" />
+      </section>
+
+      {/* SECCIÓN 5: MÚSICA */}
+      <section className="relative z-10 py-16 w-full">
+        <div className="absolute inset-0 z-0 opacity-30" style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover' }} />
+        <div className="container-custom text-center relative z-10">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white mb-6 shadow-md">
+            <img src={MUSICAL} alt="" className="w-full scale-[5] object-cover pointer-events-none" />
+          </div>
+          <h2 className="font-poplar text-cumple15-red text-4xl mb-2">MÚSICA</h2>
+          <p className="font-century font-bold text-cumple15-red text-lg mb-6">Tema que no puede faltar</p>
+          <button onClick={() => window.open('https://forms.gle/Tt93N32FCQjWAxtj7', '_blank')} className="px-1 rounded-full bg-cumple15-red text-white font-catalish text-xl">Sugerir Canción</button>
         </div>
       </section>
 
-      {/* Sección 6: Valor de la Tarjeta */}
-      <section className="relative section-padding w-full bg-cumple15-red">
+      {/* SECCIÓN 6: TARJETA */}
+      <section className="relative py-10 w-full bg-cumple15-red">
         <div className="container-custom text-center">
-          <p className="text-cumple15-red rounded-2xl bg-cumple15-pink w-[67%] mx-auto font-catalish text-lg md:text-xl">
+          <p className="text-cumple15-red rounded-2xl bg-cumple15-pink py-1 w-[60%] mx-auto font-catalish text-lg md:text-xl">
             Valor de la tarjeta: $68.000
           </p>
         </div>
-        <motion.div
-          className="absolute left-[-10%] bottom-[12%] w-52  pointer-events-none"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.9 }}
-          viewport={{ once: true }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={BOLA_BOLICHE} alt="" className="w-full object-contain object-left-top" />
-        </motion.div>
+        <img src={BOLA_BOLICHE} alt="" className="absolute left-[-25%] bottom-[-40%] w-[17rem] z-20 pointer-events-none" />
       </section>
 
-      {/* Sección 7: RSVP — gradiente rosa claro arriba, magenta abajo (~2/3) */}
-      <section className="relative section-padding bg-cumple15-red w-full ">
-        <div
-          className="absolute inset-0 pointer-events-none"
-        />
-        <div className="container-custom relative z-10 flex flex-col items-center justify-center  text-center ">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className='absolute right-0 top-[-18rem] h-[10vh]'
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={CARTA_ASISTENCIA} alt="" className="w-[400px] pointer-events-none z-0  mx-auto object-contain" />
-          </motion.div>
-          <motion.p
-            className="text-white font-century font-bold italic md:text-lg mt-10 mb-2"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            Confirmación de asistencia hasta el 30/4
-          </motion.p>
-          <motion.p
-            className="text-white/95 text-xs font-century italic mb-8"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            ¡NO OLVIDES CONFIRMAR, TE ESPERAMOS!
-          </motion.p>
-          <motion.a
-            href="https://forms.gle/8wUJRq7bamxvnNUNA"
-            target="_blank"
+      {/* SECCIÓN 7: RSVP */}
+      <section className="relative pt-32 pb-16 bg-cumple15-red w-full flex flex-col items-center">
+          <div className='absolute bottom-10 left-1/2 -translate-x-1/2 w-full max-w-xs z-10'>
+            <img src={CARTA_ASISTENCIA} alt="" className="w-full object-contain pointer-events-none" />
+          </div>
+          
+          <div className="text-center px-4 relative z-20">
+            <p className="text-white font-century font-bold italic mb-2">Confirmación de asistencia hasta el 30/4</p>
+            <p className="text-white/95 text-xs font-century italic mb-8">¡NO OLVIDES CONFIRMAR, TE ESPERAMOS!</p>
+            <a 
+            href="https://wa.me/5493476662048" 
+            target="_blank" 
             rel="noopener noreferrer"
-            className="inline-block px-2 rounded-2xl bg-cumple15-pink text-cumple15-red font-catalish text-lg  hover:bg-cumple15-pink transition-colors cursor-pointer"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            Confirmar Asistencia
-          </motion.a>
-        </div>
+            className="inline-block px-1 rounded-full bg-cumple15-pink text-cumple15-red font-catalish text-xl">Confirmar Asistencia</a>
+          </div>
       </section>
     </main>
   )
