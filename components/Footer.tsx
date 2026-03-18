@@ -12,7 +12,7 @@ import {
 
 export default function Footer() {
   const pathname = usePathname()
-  const isCumple15 = pathname?.startsWith('/demos/cumple15')
+  const isCumple15 = pathname?.startsWith('/15Sarah')
 
   const socialLinks = [
     {
