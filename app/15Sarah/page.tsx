@@ -37,7 +37,7 @@ export default function Cumple15Demo() {
   const countdownReveal = useReveal(28, 0.45)
 
   return (
-    <main className="min-h-screen bg-cumple15-pink overflow-x-hidden"> {/* El overflow va aquí */}
+    <main className="min-h-screen bg-cumple15-pink overflow-hidden"> {/* El overflow va aquí */}
       
       {/* SECCIÓN 1: SARAH */}
       <section className="relative w-full flex items-center justify-center bg-cumple15-pink" style={{ height: '25vh' }}>
@@ -91,16 +91,16 @@ export default function Cumple15Demo() {
       </section>
 
       {/* SECCIÓN 4: BRESH (Corregida) */}
-      <section className="relative z-10   w-full">
+      <section className="relative z-10 h-[20vh]  w-full">
         <div className="absolute  -inset-[16px] z-0 opacity-20" style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover' }} />
         
         {/* Osito y Bola Rosa rodeando el logo */}
         <img src={OSITO} alt="" className="absolute pointer-events-none left-[-8%] top-[-7rem] scale-[1.8] w-40 rotate-12 opacity-90 z-20" />
         
-          <img src={BRESH_IMG} alt="Bresh" className="w-full max-w-md object-contain pointer-events-none" />
+          <img src={BRESH_IMG} alt="Bresh" className="w-full object-contain pointer-events-none" />
  
 
-        <img src={BOLAROSA} alt="" className="absolute right-[-30%] bottom-[40%] scale-[1.5] w-64 z-20 pointer-events-none" />
+        <img src={BOLAROSA} alt="" className="absolute right-[-30%] bottom-[20%] scale-[1.5] w-64 z-20 pointer-events-none" />
       </section>
 
       {/* SECCIÓN 5: MÚSICA */}
@@ -127,12 +127,9 @@ export default function Cumple15Demo() {
       </section>
 
       {/* SECCIÓN 7: RSVP */}
-      <section className="relative pt-32 pb-16 bg-cumple15-red w-full flex flex-col items-center">
-          <div className='absolute bottom-10 left-1/2 -translate-x-1/2 w-full max-w-xs z-10'>
-            <img src={CARTA_ASISTENCIA} alt="" className="w-full object-contain pointer-events-none" />
-          </div>
-          
-          <div className="text-center px-4 relative z-20">
+      <section className=" bg-cumple15-red w-full flex flex-col items-center">
+          <div className="text-center px-4 pt-[4rem] relative z-20">
+            <img src={CARTA_ASISTENCIA} alt="" className="w-[15rem] absolute -top-[9rem] left-[15%] scale-[1.25] object-contain pointer-events-none" />
             <p className="text-white font-century font-bold italic mb-2">Confirmación de asistencia hasta el 30/4</p>
             <p className="text-white/95 text-xs font-century italic mb-8">¡NO OLVIDES CONFIRMAR, TE ESPERAMOS!</p>
             <a 
