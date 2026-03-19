@@ -69,7 +69,7 @@ export default function Cumple15Demo() {
 
       {/* SECCIÓN 3: FIESTA */}
       <section className="relative z-10 w-full py-16">
-        <div className="absolute inset-0 z-0 opacity-30 pointer-events-none" style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover' }} />
+        <div className="absolute -inset-4 z-0 opacity-30 pointer-events-none" style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover' }} />
         
         {/* Osito flotando - Quitamos el corte de sección */}
         <motion.div className="absolute right-[-10%] top-[-25%] pointer-events-none z-20" initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 0.8, x: 0 }} viewport={{ once: true }}>
