@@ -17,6 +17,12 @@ module.exports = {
         'wedding-sage': 'rgb(var(--wedding-sage) / <alpha-value>)',
         'wedding-ivory': 'rgb(var(--wedding-ivory) / <alpha-value>)',
         'wedding-charcoal': 'rgb(var(--wedding-charcoal) / <alpha-value>)',
+        // Premium (sobre interactivo)
+        'p-ink': 'rgb(var(--p-ink) / <alpha-value>)',
+        'p-sea': 'rgb(var(--p-sea) / <alpha-value>)',
+        'p-lemon': 'rgb(var(--p-lemon) / <alpha-value>)',
+        'p-paper': 'rgb(var(--p-paper) / <alpha-value>)',
+        'p-olive': 'rgb(var(--p-olive) / <alpha-value>)',
         // Waisten Programación colors
         'waisten-sky': '#7DD3FC', // Medium sky blue
         'waisten-teal': '#0F766E', // Dark teal
